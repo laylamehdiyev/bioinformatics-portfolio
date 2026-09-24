@@ -1,0 +1,197 @@
+Last login: Thu Sep 24 11:18:39 on ttys000
+laylamehdiyev@Laylas-MacBook-Pro ~ % ssh mehdiyev.l@login.explorer.northeastern.edu
+mehdiyev.l@login.explorer.northeastern.edu's password: 
+Last login: Wed Sep 23 21:37:03 2026 from 10.110.14.59
+    _______  __ ____  __    ____  ____  __________ 
+   / ____/ |/ // __ \/ /   / __ \/ __ \/ ____/ __ \
+  / __/  |   // /_/ / /   / / / / /_/ / __/ / /_/ /
+ / /___ /   |/ ____/ /___/ /_/ / _, _/ /___/ _, _/ 
+/_____//_/|_/_/   /_____/\____/_/ |_/_____/_/ |_|  
+                                                  
++-----------------------------------------------------------+
+| You're now connected to the Explorer cluster. Visit our   |
+| website http://rc.northeastern.edu/support for links to   |
+| our service catalog, documentation, training, and consul- |
+| tations. You can also email us at rchelp@northeastern.edu |
+| to generate a help ticket.                                |
+|                                                           |
+| The Research Computing Team                               |
++-----------------------------------------------------------+
+
+The Research Computing team is thrilled to share that a new, state-of-the-art HPC cluster is coming soon to the Northeastern research computing community. All Northeastern faculty and PIs are eligible to submit a proposal, especially those who already use GPUs on the Explorer and Discovery HPC clusters. 
+
+If you are a student or researcher who is a current Explorer HPC cluster user, we highly encourage you to reach out to your account sponsor (faculty or PI) to make a submission.
+
+The application process is here: https://forms.gle/eTPsdQZN25efoJ3g6
+If you have questions or feedback, please email d.tiwari@northeastern.edu.
+
+[mehdiyev.l@explorer-01 ~]$ cd /courses/BIOL2406.202710/students/mehdiyev.l
+[mehdiyev.l@explorer-01 mehdiyev.l]$ cd ..
+[mehdiyev.l@explorer-01 students]$ cd ..
+[mehdiyev.l@explorer-01 BIOL2406.202710]$ ls
+data  misc  shared  staff  students
+[mehdiyev.l@explorer-01 BIOL2406.202710]$ cd misc
+[mehdiyev.l@explorer-01 misc]$ ls
+grep_exercise.txt  perm_example.txt
+[mehdiyev.l@explorer-01 misc]$ ls -l
+total 2
+-rw-r--r-- 1 jhenzy users                  189 Sep 24 10:07 grep_exercise.txt
+-rw-r--r-- 1 jhenzy BIOL2406.202710-staff 1056 Sep 24 10:22 perm_example.txt
+[mehdiyev.l@explorer-01 misc]$ mv grep_axercise~
+mv: missing destination file operand after 'grep_axercise~'
+Try 'mv --help' for more information.
+[mehdiyev.l@explorer-01 misc]$ mv grep_exercise.txt~
+mv: missing destination file operand after 'grep_exercise.txt~'
+Try 'mv --help' for more information.
+[mehdiyev.l@explorer-01 misc]$ cp grep_exercise.txt ~
+[mehdiyev.l@explorer-01 misc]$ cd ~
+[mehdiyev.l@explorer-01 ~]$ ls
+bioinformatics-portfolio  Downloads          in_class_work  README_UNIX_1.txt
+Code                      grep_exercise.txt  ondemand       seq_files
+Data                      grep_practice      profile        task5_practice
+[mehdiyev.l@explorer-01 ~]$ chmod 664 grep_exercise.txt
+[mehdiyev.l@explorer-01 ~]$ ls - l
+ls: cannot access '-': No such file or directory
+ls: cannot access 'l': No such file or directory
+[mehdiyev.l@explorer-01 ~]$ ls -l
+total 4
+drwxr-xr-x 2 mehdiyev.l users 4096 Sep 10 13:09 bioinformatics-portfolio
+drwxr-xr-x 2 mehdiyev.l users 4096 Sep 23 21:49 Code
+drwxr-xr-x 2 mehdiyev.l users 4096 Sep 23 21:34 Data
+drwxr-xr-x 2 mehdiyev.l users 4096 Sep 23 21:56 Downloads
+-rw-rw-r-- 1 mehdiyev.l users  189 Sep 24 12:04 grep_exercise.txt
+drwxr-xr-x 2 mehdiyev.l users 4096 Sep 17 14:37 grep_practice
+drwxr-xr-x 2 mehdiyev.l users 4096 Sep 14 12:40 in_class_work
+drwxr-xr-x 2 mehdiyev.l users 4096 Sep 23 20:00 ondemand
+-rw-r--r-- 1 mehdiyev.l users   74 Sep 23 21:41 profile
+-rw-r--r-- 1 mehdiyev.l users 2124 Sep 24 11:31 README_UNIX_1.txt
+drwxr-xr-x 2 mehdiyev.l users 4096 Sep 14 13:43 seq_files
+drwxr-xr-x 2 mehdiyev.l users 4096 Sep 23 20:39 task5_practice
+[mehdiyev.l@explorer-01 ~]$ mv grep_exercise.txt ~
+mv: 'grep_exercise.txt' and '/home/mehdiyev.l/grep_exercise.txt' are the same file
+[mehdiyev.l@explorer-01 ~]$ cd /courses
+[mehdiyev.l@explorer-01 courses]$ ls
+ALY4020.202710   BIOL6216.202710  CHME5137.202710  discovery-courses  INFO7375.202710
+ALY6980.202710   BIOT7001.202710  CS5130.202710    ENSY5800.202710    INSH6406.202710
+archive          BTC4200.202710   CS5330.202710    etc                NETS7052.202710
+BINF6250.202710  CHEM2162.202710  CS6120.202710    etc-explorer       PHSC5905.202710
+BINF6310.202710  CHEM3402.202710  CS6180.202710    explorer-courses   ReadMe.md
+BINF6400.202710  CHEM3404.202710  CS7150.202710    HINF5500.202710    src
+BINF6430.202710  CHEM3432.202710  CS7170.202710    IE7615.202710      TO_BE_ARCHIVED
+BINF6610.202710  CHEM5641         CS7980.202710    IE7945.202710
+BIOL2406.202710  CHEM5641.202710  CY4100.202710    INFO7374.202710
+[mehdiyev.l@explorer-01 courses]$ /students/medhiyev.l/
+-bash: /students/medhiyev.l/: No such file or directory
+[mehdiyev.l@explorer-01 courses]$ /students/mehdiyev.l
+-bash: /students/mehdiyev.l: No such file or directory
+[mehdiyev.l@explorer-01 courses]$ cd /courses/BIOL2406.202710/students/mehdiyev.l
+[mehdiyev.l@explorer-01 mehdiyev.l]$ ls
+class_work  grep_practice  seq_files
+[mehdiyev.l@explorer-01 mehdiyev.l]$ cd class_work
+[mehdiyev.l@explorer-01 class_work]$ ls
+01_in_class_exer  error_10490652.txt  LM_AA_names        LM_DNA_names  output_10490652.txt
+2_AA_names        fastq_files         LM_batch_trans.sh  LM_trans.sh
+[mehdiyev.l@explorer-01 class_work]$ cd ~ ls
+-bash: cd: too many arguments
+[mehdiyev.l@explorer-01 class_work]$ cd~
+-bash: cd~: command not found
+[mehdiyev.l@explorer-01 class_work]$ cd ~
+[mehdiyev.l@explorer-01 ~]$ ls
+bioinformatics-portfolio  Downloads          in_class_work  README_UNIX_1.txt
+Code                      grep_exercise.txt  ondemand       seq_files
+Data                      grep_practice      profile        task5_practice
+[mehdiyev.l@explorer-01 ~]$ cd ~
+[mehdiyev.l@explorer-01 ~]$ ls
+bioinformatics-portfolio  Downloads          in_class_work  README_UNIX_1.txt
+Code                      grep_exercise.txt  ondemand       seq_files
+Data                      grep_practice      profile        task5_practice
+[mehdiyev.l@explorer-01 ~]$ cp -r bioinformatics-portfolio
+cp: missing destination file operand after 'bioinformatics-portfolio'
+Try 'cp --help' for more information.
+[mehdiyev.l@explorer-01 ~]$ cp -r bioinformatics-portfolio
+cp: missing destination file operand after 'bioinformatics-portfolio'
+Try 'cp --help' for more information.
+[mehdiyev.l@explorer-01 ~]$ cp -r bioinformatics-portfolio/courses/BIOL2406.202710/students/mehdiyev.l
+cp: missing destination file operand after 'bioinformatics-portfolio/courses/BIOL2406.202710/students/mehdiyev.l'
+Try 'cp --help' for more information.
+[mehdiyev.l@explorer-01 ~]$ cp -r bioinformatics-portfolio /courses/BIOL2406.202710/students/mehdiyev.l
+[mehdiyev.l@explorer-01 ~]$ cd bioinformatics
+-bash: cd: bioinformatics: No such file or directory
+[mehdiyev.l@explorer-01 ~]$ ls
+bioinformatics-portfolio  Downloads          in_class_work  README_UNIX_1.txt
+Code                      grep_exercise.txt  ondemand       seq_files
+Data                      grep_practice      profile        task5_practice
+[mehdiyev.l@explorer-01 ~]$ cd /courses/BIOL
+BIOL2406.202710/ BIOL6216.202710/ 
+[mehdiyev.l@explorer-01 ~]$ cd /courses/BIOL
+BIOL2406.202710/ BIOL6216.202710/ 
+[mehdiyev.l@explorer-01 ~]$ cd /courses/BIOL
+BIOL2406.202710/ BIOL6216.202710/ 
+[mehdiyev.l@explorer-01 ~]$ cd /courses/BIOL2406.202710/
+[mehdiyev.l@explorer-01 BIOL2406.202710]$ ls
+data  misc  shared  staff  students
+[mehdiyev.l@explorer-01 BIOL2406.202710]$ cd misc/
+[mehdiyev.l@explorer-01 misc]$ ls
+grep_exercise.txt  perm_example.txt
+[mehdiyev.l@explorer-01 misc]$ cp grep_exercise
+cp: missing destination file operand after 'grep_exercise'
+Try 'cp --help' for more information.
+[mehdiyev.l@explorer-01 misc]$ cd grep_exercise.txt
+-bash: cd: grep_exercise.txt: Not a directory
+[mehdiyev.l@explorer-01 misc]$ cd ..
+[mehdiyev.l@explorer-01 BIOL2406.202710]$ cd ../
+[mehdiyev.l@explorer-01 courses]$ ls
+ALY4020.202710   BIOL6216.202710  CHME5137.202710  discovery-courses  INFO7375.202710
+ALY6980.202710   BIOT7001.202710  CS5130.202710    ENSY5800.202710    INSH6406.202710
+archive          BTC4200.202710   CS5330.202710    etc                NETS7052.202710
+BINF6250.202710  CHEM2162.202710  CS6120.202710    etc-explorer       PHSC5905.202710
+BINF6310.202710  CHEM3402.202710  CS6180.202710    explorer-courses   ReadMe.md
+BINF6400.202710  CHEM3404.202710  CS7150.202710    HINF5500.202710    src
+BINF6430.202710  CHEM3432.202710  CS7170.202710    IE7615.202710      TO_BE_ARCHIVED
+BINF6610.202710  CHEM5641         CS7980.202710    IE7945.202710
+BIOL2406.202710  CHEM5641.202710  CY4100.202710    INFO7374.202710
+[mehdiyev.l@explorer-01 courses]$ cd /courses/BIOL2406.202710/students/mehdiyev.l
+[mehdiyev.l@explorer-01 mehdiyev.l]$ mv grep_exercise.txt /courses/BIOL2406.202710/students/mehdiyev.l
+mv: cannot stat 'grep_exercise.txt': No such file or directory
+[mehdiyev.l@explorer-01 mehdiyev.l]$ cp /courses/BIOL2406.202710/misc/grep_exercise.txt .
+[mehdiyev.l@explorer-01 mehdiyev.l]$ ls
+bioinformatics-portfolio  class_work  grep_exercise.txt  grep_practice  seq_files
+[mehdiyev.l@explorer-01 mehdiyev.l]$ less grep_exercise.txt
+[mehdiyev.l@explorer-01 mehdiyev.l]$ grep > sequences.fasta
+Usage: grep [OPTION]... PATTERNS [FILE]...
+Try 'grep --help' for more information.
+[mehdiyev.l@explorer-01 mehdiyev.l]$ grep ">" grep_exercise.txt
+>seq1_wildtype
+>seq2_mutant
+>seq3_wildtype
+>seq4_control
+[mehdiyev.l@explorer-01 mehdiyev.l]$ grep -c ">" grep_exercise.txt
+4
+[mehdiyev.l@explorer-01 mehdiyev.l]$ grep "GAATTC" grep_exercises.txt
+grep: grep_exercises.txt: No such file or directory
+[mehdiyev.l@explorer-01 mehdiyev.l]$ grep "GAATTC" grep_exercise.txt
+ATGGCTAGCTAGGGATCCGAATTCGCGCTAGC
+ATGCCCGGGAATTCGATCGATCGGGCCATGCA
+NNNATGGCTAGCTAGGATCCGAATTCGCGATG
+[mehdiyev.l@explorer-01 mehdiyev.l]$ grep "GGATCC" grep_exercises.txt
+grep: grep_exercises.txt: No such file or directory
+[mehdiyev.l@explorer-01 mehdiyev.l]$ grep "GGATCC" grep_exercise.txt
+ATGGCTAGCTAGGGATCCGAATTCGCGCTAGC
+ATGGCTAGCTAGGGATCCTAATTCGCGCTAGC
+NNNATGGCTAGCTAGGATCCGAATTCGCGATG
+[mehdiyev.l@explorer-01 mehdiyev.l]$ grep -v "GAATTC" grep_exercise.txt 
+>seq1_wildtype
+>seq2_mutant
+ATGGCTAGCTAGGGATCCTAATTCGCGCTAGC
+>seq3_wildtype
+>seq4_control
+[mehdiyev.l@explorer-01 mehdiyev.l]$ grep "N" grep_exercise.txt 
+NNNATGGCTAGCTAGGATCCGAATTCGCGATG
+[mehdiyev.l@explorer-01 mehdiyev.l]$ grep "mutant" grep_exercise.txt 
+>seq2_mutant
+[mehdiyev.l@explorer-01 mehdiyev.l]$ grep "wildtype" grep_exercise.txt 
+>seq1_wildtype
+>seq3_wildtype
+[mehdiyev.l@explorer-01 mehdiyev.l]$ ls
+bioinformatics-portfolio  class_work  grep_exercise.txt  grep_practice  seq_files  sequences.fasta
+[mehdiyev.l@explorer-01 mehdiyev.l]$ 
