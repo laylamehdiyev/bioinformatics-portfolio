@@ -1,0 +1,94 @@
+[mehdiyev.l@explorer-01 ~]$ srun --pty /bin/bash
+srun: job 10591142 queued and waiting for resources
+srun: job 10591142 has been allocated resources
+[mehdiyev.l@c0613 ~]$ cd /courses/BIOL2406.202710/students/mehdiyev.l/UNIX_HPC
+[mehdiyev.l@c0613 UNIX_HPC]$ ls
+1_UNIX_main.txt  At_proteins.fasta  excel_data.csv
+At_genes.gff     chr1.fasta         intron_IME_data.fasta
+[mehdiyev.l@c0613 UNIX_HPC]$ # Required tutorial files were copied into my UNIX_HPC directory before beginning this session.
+[mehdiyev.l@c0613 UNIX_HPC]$ # At_genes.gff and chr1.fasta were already unzipped before this session.
+[mehdiyev.l@c0613 UNIX_HPC]$ # Completed task 1 
+[mehdiyev.l@c0613 UNIX_HPC]$ grep "ACGT" chr1.fasta
+ATATACAACTCATAATTTAAAATAAAATTATGATCGACACACGTTTACACATAAAATCTGTAAATCAACTCATATACCC
+TTACAAGGGAAGTCCCCAATTGGTCAACATGTGAAAGCACGTGTCATGTTCTTACTTTTGTTTGGGTAATCTTCTAATT
+TTTGGCTTGTTATGAAGGCATGTCATAACGTTTCTAGTCACAACTCACAAGCATACCAACGACCATGATAAATCCAAAA
+#edited to save space
+[mehdiyev.l@c0613 UNIX_HPC]$ grep "AC.GT" chr1.fasta
+CATTTGGGAATGTGAGTCTCTTATTGTAACCTTAGGGTTGGTTTATCTCAAGAATCTTATTAATTGTTTGGACTGTTTA
+ACTGTATATGGAAGATGTGAATGAAGTTTTGGTCCTGAATGTGGCCAAGGTTCCGTCATTTGGAGATACGAAATCAAAT
+TCATTTGTCCAAATGCATGAATGAATTTGGAAATAGGTACGAGAATGCCAACAATGACAAGAAGGGATCAAAGACAGTT
+#edited to save space
+[mehdiyev.l@c0613 UNIX_HPC]$ grep "AC*GT" chr1.fasta 
+CATTTGGGAATGTGAGTCTCTTATTGTAACCTTAGGGTTGGTTTATCTCAAGAATCTTATTAATTGTTTGGACTGTTTA
+TAGTTGTAGGGATGAAGTCTTTCTTCGTTGTTGTTACGCTTGTCATCTCATCTCTCAATGATATGGGATGGTCCTTTAG
+CATTTATTCTGAAGTTCTTCTGCTTGATGATTTTATCCTTAGCCAAAAGGATTGGTGGTTTGAAGACACATCATATCAA
+#edited to save space
+[mehdiyev.l@c0613 UNIX_HPC]$ grep "AC.*GT" chr1.fasta
+GAATCCCTAAATACCTAATTCCCTAAACCCGAAACCGGTTTCTCTGGTTGAAAATCATTGTGTATATAATGATAATTTT
+TGTGGTTTTCTTTCCTTCACTTAGCTATGGATGGTTTATCTTCATTTGTTATATTGGATACAAGCTTTGCTACGATCTA
+CATTTGGGAATGTGAGTCTCTTATTGTAACCTTAGGGTTGGTTTATCTCAAGAATCTTATTAATTGTTTGGACTGTTTA
+#edited to save space
+[mehdiyev.l@c0613 UNIX_HPC]$ grep "A...T" chr1.fasta
+CCCTAAACCCTAAACCCTAAACCCTAAACCTCTGAATCCTTAATCCCTAAATCCCTAAATCTTTAAATCCTACATCCAT
+GAATCCCTAAATACCTAATTCCCTAAACCCGAAACCGGTTTCTCTGGTTGAAAATCATTGTGTATATAATGATAATTTT
+ATCGTTTTTATGTAATTGCTTATTGTTGTGTGTAGATTTTTTAAAAATATCATTTGAGGTCAATACAAATCCTATTTCT
+#edited to save space
+[mehdiyev.l@c0613 UNIX_HPC]$ grep "AG*T" chr1.fasta 
+CCCTAAACCCTAAACCCTAAACCCTAAACCTCTGAATCCTTAATCCCTAAATCCCTAAATCTTTAAATCCTACATCCAT
+GAATCCCTAAATACCTAATTCCCTAAACCCGAAACCGGTTTCTCTGGTTGAAAATCATTGTGTATATAATGATAATTTT
+ATCGTTTTTATGTAATTGCTTATTGTTGTGTGTAGATTTTTTAAAAATATCATTTGAGGTCAATACAAATCCTATTTCT
+#edited to save space
+[mehdiyev.l@c0613 UNIX_HPC]$ grep "A*C*G*T*" chr1.fasta 
+>Chr1 dumped from ADB: Mar/14/08 12:28; last updated: 2007-12-20
+CCCTAAACCCTAAACCCTAAACCCTAAACCTCTGAATCCTTAATCCCTAAATCCCTAAATCTTTAAATCCTACATCCAT
+GAATCCCTAAATACCTAATTCCCTAAACCCGAAACCGGTTTCTCTGGTTGAAAATCATTGTGTATATAATGATAATTTT
+#edited to save space
+[mehdiyev.l@c0613 UNIX_HPC]$ # Completed task 2
+[mehdiyev.l@c0613 UNIX_HPC]$ grep -c "ACGT" *.fasta
+At_proteins.fasta:70
+chr1.fasta:50612
+intron_IME_data.fasta:11924
+[mehdiyev.l@c0613 UNIX_HPC]$ grep -c "AC.GT" *.fasta
+At_proteins.fasta:47
+chr1.fasta:62327
+intron_IME_data.fasta:17998
+[mehdiyev.l@c0613 UNIX_HPC]$ grep -c "AC*GT" *.fasta
+At_proteins.fasta:2600
+chr1.fasta:288454
+intron_IME_data.fasta:103917
+[mehdiyev.l@c0613 UNIX_HPC]$ # There was no section 36.1 so I chose the patterns from section U37 and chose to do the first 3
+[mehdiyev.l@c0613 UNIX_HPC]$ # Completed task 3
+[mehdiyev.l@c0613 UNIX_HPC]$ less chr1.fasta
+[mehdiyev.l@c0613 UNIX_HPC]$ # searched /ATCG.*TAG$ while viewing chr1.fasta 
+[mehdiyev.l@c0613 UNIX_HPC]$ # Completed task 4
+[mehdiyev.l@c0613 UNIX_HPC]$ tr 'A-Z' 'a-z' < chr1.fasta > smallcase_chr1.fasta
+[mehdiyev.l@c0613 UNIX_HPC]$ ls smallcase_chr1.fasta
+smallcase_chr1.fasta
+[mehdiyev.l@c0613 UNIX_HPC]$ # Completed task 5
+[mehdiyev.l@c0613 UNIX_HPC]$ head -n 1 chr1.fasta | sed 's/Chr1/Chromosome_1/'
+>Chromosome_1 dumped from ADB: Mar/14/08 12:28; last updated: 2007-12-20
+[mehdiyev.l@c0613 UNIX_HPC]$ # Completed task 6
+[mehdiyev.l@c0613 UNIX_HPC]$ tail -n 500 At_genes.gff > At_genes_last500.gff
+[mehdiyev.l@c0613 UNIX_HPC]$ wc -l At_genes_last500.gff
+500 At_genes_last500.gff
+[mehdiyev.l@c0613 UNIX_HPC]$ # Completed task 7
+[mehdiyev.l@c0613 UNIX_HPC]$ cut -f 1,5 At_genes.gff | head
+Chr1	30432563
+Chr1	5899
+Chr1	5899
+Chr1	5630
+Chr1	3913
+Chr1	3759
+Chr1	3913
+Chr1	4276
+Chr1	4276
+Chr1	4605
+[mehdiyev.l@c0613 UNIX_HPC]$ # Completed task 8
+[mehdiyev.l@c0613 UNIX_HPC]$ # 1. tr '\n' '@' changes each newline into an @ character.
+[mehdiyev.l@c0613 UNIX_HPC]$ # 2. sed 's/>/#>/g' changes each > character into #>.
+[mehdiyev.l@c0613 UNIX_HPC]$ # 3. tr '#' '\n' changes each # character back into a newline.
+[mehdiyev.l@c0613 UNIX_HPC]$ # 4. grep 'i1.*5UTR' keeps only entries containing i1 and 5UTR.
+[mehdiyev.l@c0613 UNIX_HPC]$ # 5. sort -nk 3 -t "_" sorts the results by the third number.
+[mehdiyev.l@c0613 UNIX_HPC]$ # 6. head -n 5 keeps only the first 5 results.
+[mehdiyev.l@c0613 UNIX_HPC]$ # 7. tr '@' '\n' changes the @ characters back into new lines.
+[mehdiyev.l@c0613 UNIX_HPC]$ # Completed task 9
