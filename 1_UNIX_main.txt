@@ -1,0 +1,305 @@
+Last login: Thu Sep 24 09:04:46 on ttys000
+laylamehdiyev@Laylas-MacBook-Pro ~ % cd ~
+laylamehdiyev@Laylas-MacBook-Pro ~ % ls
+Applications	Documents	Library		Music		Public
+Desktop		Downloads	Movies		Pictures	Zotero
+laylamehdiyev@Laylas-MacBook-Pro ~ % # Completed task 1
+zsh: command not found: #
+laylamehdiyev@Laylas-MacBook-Pro ~ % setopt interactivecomments
+laylamehdiyev@Laylas-MacBook-Pro ~ % # Completed task 1
+laylamehdiyev@Laylas-MacBook-Pro ~ % cd ~/Desktop
+laylamehdiyev@Laylas-MacBook-Pro Desktop % pwd
+/Users/laylamehdiyev/Desktop
+laylamehdiyev@Laylas-MacBook-Pro Desktop % cd ../Documents
+laylamehdiyev@Laylas-MacBook-Pro Documents % pwd
+/Users/laylamehdiyev/Documents
+laylamehdiyev@Laylas-MacBook-Pro Documents % cd /Users/laylamehdiyev/Desktop
+laylamehdiyev@Laylas-MacBook-Pro Desktop % pwd
+/Users/laylamehdiyev/Desktop
+laylamehdiyev@Laylas-MacBook-Pro Desktop % # Completed task 2
+laylamehdiyev@Laylas-MacBook-Pro Desktop % cd /
+laylamehdiyev@Laylas-MacBook-Pro / % pwd
+/
+laylamehdiyev@Laylas-MacBook-Pro / % cd ~
+laylamehdiyev@Laylas-MacBook-Pro ~ % pwd
+/Users/laylamehdiyev
+laylamehdiyev@Laylas-MacBook-Pro ~ % cd /
+laylamehdiyev@Laylas-MacBook-Pro / % pwd
+/
+laylamehdiyev@Laylas-MacBook-Pro / % cd
+laylamehdiyev@Laylas-MacBook-Pro ~ % pwd
+/Users/laylamehdiyev
+laylamehdiyev@Laylas-MacBook-Pro ~ % # Completed task 3
+laylamehdiyev@Laylas-MacBook-Pro ~ % ls -l
+total 0
+drwx------@   5 laylamehdiyev  staff    160 May 25  2023 Applications
+drwx------@  11 laylamehdiyev  staff    352 Sep 24 09:00 Desktop
+drwx------@  16 laylamehdiyev  staff    512 Sep 10 12:47 Documents
+drwx------+ 674 laylamehdiyev  staff  21568 Sep 23 20:01 Downloads
+drwx------@  89 laylamehdiyev  staff   2848 Feb  6  2026 Library
+drwx------    4 laylamehdiyev  staff    128 Apr 19  2022 Movies
+drwx------+   4 laylamehdiyev  staff    128 May  4  2022 Music
+drwx------+   5 laylamehdiyev  staff    160 Jun 15  2022 Pictures
+laylamehdiyev@Laylas-MacBook-Pro ~ % ls -R
+Applications	Documents	Library		Music		Public
+Desktop		Downloads	Movies		Pictures	Zotero
+./Applications:
+Chrome Apps.localized
+laylamehdiyev@Laylas-MacBook-Pro ~ % ls -l -t -r
+total 0
+drwxr-xr-x+   4 laylamehdiyev  staff    128 Apr 18  2022 Public
+drwx------    4 laylamehdiyev  staff    128 Apr 19  2022 Movies
+drwx------+   4 laylamehdiyev  staff    128 May  4  2022 Music
+drwx------+   5 laylamehdiyev  staff    160 Jun 15  2022 Pictures
+drwx------@   5 laylamehdiyev  staff    160 May 25  2023 Applications
+drwx------@  89 laylamehdiyev  staff   2848 Feb  6  2026 Library
+drwxr-xr-x    6 laylamehdiyev  staff    192 Apr 13 17:07 Zotero
+drwx------@  16 laylamehdiyev  staff    512 Sep 10 12:47 Documents
+drwx------+ 674 laylamehdiyev  staff  21568 Sep 23 20:01 Downloads
+drwx------@  11 laylamehdiyev  staff    352 Sep 24 09:00 Desktop
+laylamehdiyev@Laylas-MacBook-Pro ~ % ls -lh
+total 0
+drwx------@   5 laylamehdiyev  staff   160B May 25  2023 Applications
+drwx------@  11 laylamehdiyev  staff   352B Sep 24 09:00 Desktop
+drwx------@  16 laylamehdiyev  staff   512B Sep 10 12:47 Documents
+drwx------+ 674 laylamehdiyev  staff    21K Sep 23 20:01 Downloads
+drwx------@  89 laylamehdiyev  staff   2.8K Feb  6  2026 Library
+drwx------    4 laylamehdiyev  staff   128B Apr 19  2022 Movies
+drwx------+   4 laylamehdiyev  staff   128B May  4  2022 Music
+drwx------+   5 laylamehdiyev  staff   160B Jun 15  2022 Pictures
+drwxr-xr-x+   4 laylamehdiyev  staff   128B Apr 18  2022 Public
+drwxr-xr-x    6 laylamehdiyev  staff   192B Apr 13 17:07 Zotero
+laylamehdiyev@Laylas-MacBook-Pro ~ % # Completed task 4
+laylamehdiyev@Laylas-MacBook-Pro ~ % cd ~/Desktop
+laylamehdiyev@Laylas-MacBook-Pro Desktop % mkdir unix
+laylamehdiyev@Laylas-MacBook-Pro Desktop % cd unix
+laylamehdiyev@Laylas-MacBook-Pro unix % mkdir Temp1
+laylamehdiyev@Laylas-MacBook-Pro unix % cd Temp1
+laylamehdiyev@Laylas-MacBook-Pro Temp1 % mkdir Temp2
+laylamehdiyev@Laylas-MacBook-Pro Temp1 % cd Temp2
+laylamehdiyev@Laylas-MacBook-Pro Temp2 % pwd
+/Users/laylamehdiyev/Desktop/unix/Temp1/Temp2
+laylamehdiyev@Laylas-MacBook-Pro Temp2 % cd ../..
+laylamehdiyev@Laylas-MacBook-Pro unix % pwd
+/Users/laylamehdiyev/Desktop/unix
+laylamehdiyev@Laylas-MacBook-Pro unix % cd /Users/laylamehdiyev/Desktop/unix/Temp1/Temp2
+laylamehdiyev@Laylas-MacBook-Pro Temp2 % pwd
+/Users/laylamehdiyev/Desktop/unix/Temp1/Temp2
+laylamehdiyev@Laylas-MacBook-Pro Temp2 % # Completed task 5
+laylamehdiyev@Laylas-MacBook-Pro Temp2 % cd ~/Downloads
+laylamehdiyev@Laylas-MacBook-Pro Downloads % pwd
+/Users/laylamehdiyev/Downloads
+laylamehdiyev@Laylas-MacBook-Pro Downloads % touch unwanted.txt
+laylamehdiyev@Laylas-MacBook-Pro Downloads % ls unwanted.txt
+unwanted.txt
+laylamehdiyev@Laylas-MacBook-Pro Downloads % rm unwanted.txt
+laylamehdiyev@Laylas-MacBook-Pro Downloads % ls unwanted.txt
+ls: unwanted.txt: No such file or directory
+laylamehdiyev@Laylas-MacBook-Pro Downloads % # Completed task 6
+laylamehdiyev@Laylas-MacBook-Pro Downloads % cd ~
+laylamehdiyev@Laylas-MacBook-Pro ~ % mkdir unix
+laylamehdiyev@Laylas-MacBook-Pro ~ % cd /Users/laylamehdiyev/Desktop/unix 
+laylamehdiyev@Laylas-MacBook-Pro unix % pwd
+/Users/laylamehdiyev/Desktop/unix
+laylamehdiyev@Laylas-MacBook-Pro unix % # Completed task 7 
+laylamehdiyev@Laylas-MacBook-Pro unix % mkdir Temp
+laylamehdiyev@Laylas-MacBook-Pro unix % cd Temp
+laylamehdiyev@Laylas-MacBook-Pro Temp % touch fat fit feet
+laylamehdiyev@Laylas-MacBook-Pro Temp % ls
+fat	feet	fit
+laylamehdiyev@Laylas-MacBook-Pro Temp % ls f?t
+fat	fit
+laylamehdiyev@Laylas-MacBook-Pro Temp % ls f*t
+fat	feet	fit
+laylamehdiyev@Laylas-MacBook-Pro Temp % ls f??t
+feet
+laylamehdiyev@Laylas-MacBook-Pro Temp % # Completed task 8
+laylamehdiyev@Laylas-MacBook-Pro Temp % mkdir Temp3
+laylamehdiyev@Laylas-MacBook-Pro Temp % ls
+Temp3	fat	feet	fit
+laylamehdiyev@Laylas-MacBook-Pro Temp % cd ~
+laylamehdiyev@Laylas-MacBook-Pro ~ % pwd
+/Users/laylamehdiyev
+laylamehdiyev@Laylas-MacBook-Pro ~ % mv Desktop/unix/Temp/Temp3 Desktop/Temp/
+laylamehdiyev@Laylas-MacBook-Pro ~ % ls Desktop/Temp
+laylamehdiyev@Laylas-MacBook-Pro ~ % find ~/Desktop -type d -name "Temp3"
+laylamehdiyev@Laylas-MacBook-Pro ~ % mkdir -p Desktop/Temp/Temp3
+laylamehdiyev@Laylas-MacBook-Pro ~ % ls Desktop/Temp
+Temp3
+laylamehdiyev@Laylas-MacBook-Pro ~ % # Completed task 9
+laylamehdiyev@Laylas-MacBook-Pro ~ % ls Desktop
+01_in_class_exer	Temp			unix
+DNA_and_AA names.txt	gerp_practice.txt
+laylamehdiyev@Laylas-MacBook-Pro ~ % ls Desktop/
+01_in_class_exer	Temp			unix
+DNA_and_AA names.txt	gerp_practice.txt
+laylamehdiyev@Laylas-MacBook-Pro ~ % # Completed task 10
+laylamehdiyev@Laylas-MacBook-Pro ~ % ls Desktop/unix
+Temp	Temp1
+laylamehdiyev@Laylas-MacBook-Pro ~ % ls Desktop/unix/Temp
+fat	feet	fit
+laylamehdiyev@Laylas-MacBook-Pro ~ % ls Desktop/unix/Temp1
+Temp2
+laylamehdiyev@Laylas-MacBook-Pro ~ % cd ~/Desktop/unix
+laylamehdiyev@Laylas-MacBook-Pro unix % touch delete1.txt delete2.txt delete3.txt
+laylamehdiyev@Laylas-MacBook-Pro unix % ls
+Temp		Temp1		delete1.txt	delete2.txt	delete3.txt
+laylamehdiyev@Laylas-MacBook-Pro unix % rm -i delete*.txt
+remove delete1.txt? y
+remove delete2.txt? y
+remove delete3.txt? y
+laylamehdiyev@Laylas-MacBook-Pro unix % ls
+Temp	Temp1
+laylamehdiyev@Laylas-MacBook-Pro unix % # Completed task 11
+laylamehdiyev@Laylas-MacBook-Pro unix % cp -R Temp TempCopy
+laylamehdiyev@Laylas-MacBook-Pro unix % ls
+Temp		Temp1		TempCopy
+laylamehdiyev@Laylas-MacBook-Pro unix % cp Temp TempCopy2
+cp: Temp is a directory (not copied).
+laylamehdiyev@Laylas-MacBook-Pro unix % cd ~
+laylamehdiyev@Laylas-MacBook-Pro ~ % pwd
+/Users/laylamehdiyev
+laylamehdiyev@Laylas-MacBook-Pro ~ % rm -ri Desktop/unix
+examine files in directory Desktop/unix? y
+examine files in directory Desktop/unix/Temp? y
+remove Desktop/unix/Temp/fit? y
+remove Desktop/unix/Temp/feet? y
+remove Desktop/unix/Temp/fat? y
+remove Desktop/unix/Temp? y
+examine files in directory Desktop/unix/TempCopy? y
+remove Desktop/unix/TempCopy/fit? y
+remove Desktop/unix/TempCopy/feet? y
+remove Desktop/unix/TempCopy/fat? y
+remove Desktop/unix/TempCopy? y
+examine files in directory Desktop/unix/Temp1? y
+examine files in directory Desktop/unix/Temp1/Temp2? y
+remove Desktop/unix/Temp1/Temp2? y
+remove Desktop/unix/Temp1? y
+remove Desktop/unix? y
+laylamehdiyev@Laylas-MacBook-Pro ~ % ls Desktop
+01_in_class_exer	Temp
+DNA_and_AA names.txt	gerp_practice.txt
+laylamehdiyev@Laylas-MacBook-Pro ~ % # Completed task 12
+laylamehdiyev@Laylas-MacBook-Pro ~ % mkdir Desktop/Data
+laylamehdiyev@Laylas-MacBook-Pro ~ % ls Desktop
+01_in_class_exer	Data			gerp_practice.txt
+DNA_and_AA names.txt	Temp
+laylamehdiyev@Laylas-MacBook-Pro ~ % cd Desktop/Data
+laylamehdiyev@Laylas-MacBook-Pro Data % curl -0 https://github.com/jamiehenzy/01_UNIX_HPC/raw/refs/heads/main/At_proteins.fasta
+laylamehdiyev@Laylas-MacBook-Pro Data % ls
+laylamehdiyev@Laylas-MacBook-Pro Data % pwd
+/Users/laylamehdiyev/Desktop/Data
+laylamehdiyev@Laylas-MacBook-Pro Data % wget https://github.com/jamiehenzy/01_UNIX_HPC/raw/refs/heads/main/At_proteins.fasta
+zsh: command not found: wget
+laylamehdiyev@Laylas-MacBook-Pro Data % curl -0 https://github.com/jamiehenzy/01_UNIX_HPC/raw/refs/heads/main/At_proteins.fasta
+laylamehdiyev@Laylas-MacBook-Pro Data % ls
+laylamehdiyev@Laylas-MacBook-Pro Data % curl -O https://github.com/jamiehenzy/01_UNIX_HPC/raw/refs/heads/main/At_proteins.fasta
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+laylamehdiyev@Laylas-MacBook-Pro Data % curl -L -O https://github.com/jamiehenzy/01_UNIX_HPC/raw/refs/heads/main/At_proteins.fasta
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 17.0M  100 17.0M    0     0  11.6M      0  0:00:01  0:00:01 --:--:-- 25.0M
+laylamehdiyev@Laylas-MacBook-Pro Data % ls
+At_proteins.fasta
+laylamehdiyev@Laylas-MacBook-Pro Data % less At_proteins.fasta 
+laylamehdiyev@Laylas-MacBook-Pro Data % # Completed task 13
+laylamehdiyev@Laylas-MacBook-Pro Data % alias rm='rm -i'
+laylamehdiyev@Laylas-MacBook-Pro Data % alias
+rm='rm -i'
+run-help=man
+which-command=whence
+laylamehdiyev@Laylas-MacBook-Pro Data % # Completed task 14 in different tab as instructions said
+laylamehdiyev@Laylas-MacBook-Pro Data % cd ~
+laylamehdiyev@Laylas-MacBook-Pro ~ % nano profile
+laylamehdiyev@Laylas-MacBook-Pro ~ % less profile
+laylamehdiyev@Laylas-MacBook-Pro ~ % # Completed task 15
+laylamehdiyev@Laylas-MacBook-Pro ~ % cd ~
+laylamehdiyev@Laylas-MacBook-Pro ~ % source profile
+laylamehdiyev@Laylas-MacBook-Pro ~ % ls
+Applications/	Downloads/	Music/		Zotero/
+Desktop/	Library/	Pictures/	profile
+Documents/	Movies/		Public/		unix/
+laylamehdiyev@Laylas-MacBook-Pro ~ % touch testfile/
+touch: testfile/: No such file or directory
+laylamehdiyev@Laylas-MacBook-Pro ~ % touch testfile
+laylamehdiyev@Laylas-MacBook-Pro ~ % rm testfile
+remove testfile? y
+laylamehdiyev@Laylas-MacBook-Pro ~ % # Completed task 16
+laylamehdiyev@Laylas-MacBook-Pro ~ % cd ~
+laylamehdiyev@Laylas-MacBook-Pro ~ % ls -a
+./			.zsh_history		Music/
+../			.zsh_sessions/		Pictures/
+.CFUserTextEncoding	Applications/		Public/
+.DS_Store		Desktop/		Zotero/
+.Trash/			Documents/		profile
+.cache/			Downloads/		unix/
+.local/			Library/
+.ssh/			Movies/
+laylamehdiyev@Laylas-MacBook-Pro ~ % less profile
+laylamehdiyev@Laylas-MacBook-Pro ~ % less .zprofile
+.zprofile: No such file or directory
+laylamehdiyev@Laylas-MacBook-Pro ~ % # Completed task 17
+laylamehdiyev@Laylas-MacBook-Pro Data % # Completed task 18 in different tab as instructions said
+laylamehdiyev@Laylas-MacBook-Pro ~ % mkdir ~/Desktop/Code
+laylamehdiyev@Laylas-MacBook-Pro ~ % cd ~/Desktop/Code
+laylamehdiyev@Laylas-MacBook-Pro Code % nano hello.sh
+laylamehdiyev@Laylas-MacBook-Pro Code % nano hello.sh
+laylamehdiyev@Laylas-MacBook-Pro Code % # Completed task 19
+laylamehdiyev@Laylas-MacBook-Pro Code % bash hello.sh
+Hello World
+laylamehdiyev@Laylas-MacBook-Pro Code % ls -l
+total 8
+-rw-r--r--  1 laylamehdiyev  staff  49 Sep 24 10:17 hello.sh
+laylamehdiyev@Laylas-MacBook-Pro Code % chmod u+x hello.sh
+laylamehdiyev@Laylas-MacBook-Pro Code % ls -l
+total 8
+-rwxr--r--  1 laylamehdiyev  staff  49 Sep 24 10:17 hello.sh
+laylamehdiyev@Laylas-MacBook-Pro Code % bash hello.sh
+Hello World
+laylamehdiyev@Laylas-MacBook-Pro Code % # Completed task 20
+laylamehdiyev@Laylas-MacBook-Pro Code % ./hello.sh
+Hello World
+laylamehdiyev@Laylas-MacBook-Pro Code % # Completed task 21
+laylamehdiyev@Laylas-MacBook-Pro Code % nano cleanup.sh
+laylamehdiyev@Laylas-MacBook-Pro Code % # Completed task 22
+laylamehdiyev@Laylas-MacBook-Pro Code % cd ~/Downloads
+laylamehdiyev@Laylas-MacBook-Pro Downloads % ls
+01_ICE.docx
+0ba2935184ffd473.png
+0f1e37f326284c8f.png
+laylamehdiyev@Laylas-MacBook-Pro Downloads % cd ~/Desktop/Code
+laylamehdiyev@Laylas-MacBook-Pro Code % mkdir cleanup_test
+laylamehdiyev@Laylas-MacBook-Pro Code % cd cleanup_test
+laylamehdiyev@Laylas-MacBook-Pro cleanup_test % touch notes.txt photo.jpg song.mp3
+laylamehdiyev@Laylas-MacBook-Pro cleanup_test % mkdir Text Pictures Music
+laylamehdiyev@Laylas-MacBook-Pro cleanup_test % ls
+Music/		Text/		photo.jpg
+Pictures/	notes.txt	song.mp3
+laylamehdiyev@Laylas-MacBook-Pro cleanup_test % cp ../cleanup.sh .
+laylamehdiyev@Laylas-MacBook-Pro cleanup_test % ls
+Music/		Text/		notes.txt	song.mp3
+Pictures/	cleanup.sh	photo.jpg
+laylamehdiyev@Laylas-MacBook-Pro cleanup_test % cd ~/Downloads
+laylamehdiyev@Laylas-MacBook-Pro Downloads % chmod u+x cleanup.sh
+chmod: cleanup.sh: No such file or directory
+laylamehdiyev@Laylas-MacBook-Pro Downloads % cp ~/Desktop/Code/cleanup.sh .
+laylamehdiyev@Laylas-MacBook-Pro Downloads % chmod u+x cleanup.sh
+laylamehdiyev@Laylas-MacBook-Pro Downloads % ./cleanup.sh
+mv: rename *.txt to Text: No such file or directory
+mv: Pictures is not a directory
+laylamehdiyev@Laylas-MacBook-Pro Downloads % nano cleanup.sh
+laylamehdiyev@Laylas-MacBook-Pro Downloads % mkdir Text Music
+mkdir: Music: File exists
+laylamehdiyev@Laylas-MacBook-Pro Downloads % ls -ld Text Pictures Music
+ls: Pictures: No such file or directory
+-rw-r--r--@ 1 laylamehdiyev  staff  65280 Oct 10  2025 Music
+drwxr-xr-x  2 laylamehdiyev  staff     64 Sep 24 10:36 Text/
+laylamehdiyev@Laylas-MacBook-Pro Downloads % cd ~/Desktop/Code/cleanup_test
+laylamehdiyev@Laylas-MacBook-Pro cleanup_test % chmod u+x cleanup.sh
+laylamehdiyev@Laylas-MacBook-Pro cleanup_test % ./cleanup.sh
+laylamehdiyev@Laylas-MacBook-Pro cleanup_test % ls
+Music/		Pictures/	Text/		cleanup.sh
+laylamehdiyev@Laylas-MacBook-Pro cleanup_test % # Completed task 23
