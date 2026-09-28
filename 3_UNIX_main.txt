@@ -1,0 +1,148 @@
+[mehdiyev.l@explorer-01 ~]$ cd /courses/BIOL2406.202710/students/mehdiyev.l/UNIX_HPC/Sea_cuke
+[mehdiyev.l@explorer-01 Sea_cuke]$ # Course sequencing files were copied into my student UNIX_HPC and Sea_cuke directory before beginning the exercises.
+[mehdiyev.l@explorer-01 Sea_cuke]$ # Exercise 1
+[mehdiyev.l@explorer-01 Sea_cuke]$ # 1. List all of the files in /usr/bin that start with the letter c.
+[mehdiyev.l@explorer-01 Sea_cuke]$ ls /usr/bin/c*
+/usr/bin/c++                  /usr/bin/clevis-decrypt-tang
+/usr/bin/c89                  /usr/bin/clevis-decrypt-tpm2
+/usr/bin/c99                  /usr/bin/clevis-encrypt-null
+/usr/bin/cal                  /usr/bin/clevis-encrypt-sss
+#edited to save space
+[mehdiyev.l@explorer-01 Sea_cuke]$  # 2. List all of the files in /usr/bin that contain the letter a.
+[mehdiyev.l@explorer-01 Sea_cuke]$ ls /usr/bin/*a*
+/usr/bin/a2x
+/usr/bin/a2x.py
+/usr/bin/ab
+/usr/bin/ac
+#edited to save space
+[mehdiyev.l@explorer-01 Sea_cuke]$ # 3. List all of the files in /usr/bin that end with the letter o.
+[mehdiyev.l@explorer-01 Sea_cuke]$ ls /usr/bin/*o
+/usr/bin/avinfo          /usr/bin/kbdinfo          /usr/bin/pinfo
+/usr/bin/captoinfo       /usr/bin/kvno             /usr/bin/rnano
+/usr/bin/cargo           /usr/bin/ld.so            /usr/bin/rpcinfo
+/usr/bin/circo           /usr/bin/lessecho         /usr/bin/rpm2cpio
+/usr/bin/cpio            /usr/bin/lneato           /usr/bin/sginfo
+#edited to save space
+[mehdiyev.l@explorer-01 Sea_cuke]$ # Bonus: List all of the files in /usr/bin that contain the letter a or the letter c.
+[mehdiyev.l@explorer-01 Sea_cuke]$ ls /usr/bin/*[ac]*
+/usr/bin/a2x
+/usr/bin/a2x.py
+/usr/bin/ab
+/usr/bin/ac
+/usr/bin/aclocal
+#edited to save space
+[mehdiyev.l@explorer-01 Sea_cuke]$ # Completed Exercise 1
+[mehdiyev.l@explorer-01 Sea_cuke]$ cd /courses/BIOL2406.202710/students/mehdiyev.l
+[mehdiyev.l@explorer-01 mehdiyev.l]$ # Starting Exercise 2
+[mehdiyev.l@explorer-01 mehdiyev.l]$ # # The current course FASTQ files were provided as .fastq.gz files. I created uncompressed .fastq copies while keeping the original .gz files in the directory.
+[mehdiyev.l@explorer-01 mehdiyev.l]$ cd /courses/BIOL2406.202710/students/mehdiyev.l/UNIX_HPC/Sea_cuke
+[mehdiyev.l@explorer-01 Sea_cuke]$ pwd
+/courses/BIOL2406.202710/students/mehdiyev.l/UNIX_HPC/Sea_cuke
+[mehdiyev.l@explorer-01 Sea_cuke]$ cd /courses/BIOL2406.202710/students/mehdiyev.l
+[mehdiyev.l@explorer-01 mehdiyev.l]$ cat UNIX_HPC/Sea_cuke/SRR6805880.tiny.fastq
+@SRR6805880.2151832 OCD6D:00225:02960 length=80
+TGCAGAAGGCATGACCTTACCTACTGAATAAAAGATGAGACACCTTCTCATTGGCCAAGAAGAAACAACACTCTATTACA
++
+47:7775<59999995:6;;5:7664621111*/52245554404/33533/3/30436724461./,.:79999:4:9:
+@SRR6805880.576388 9F8KO:05533:11649 length=80
+TGCAGTCGTAATCTAGGAACACACCTACGGGATTATTTACTATTTTACAATCCATAGTCGGAGTCTACAAACAGTTACCA
++
+135445878868?;:7474889//+/665628958::2788:>;;09:9556-315447817999::;::28///27:18
+@SRR6805880.501486 9F8KO:05578:13178 length=80
+TGCAGCAAGACCGTAGATCTGTCAAACGCAAAGCTTTAGCGAGCTCTCTAAGTAGCTTGAGAGGTCTGAAGAGAGCAGTG
++
+35557566/////-1607;;275:/515876474<93;<4:,/.5553770643//-////36445764777777777%7
+#edited to save space, I kept the last line as proof for the answer
+[mehdiyev.l@explorer-01 mehdiyev.l]$ # The last line of the file is 35557566/////-1607;;275:/515876474<93;<4;;/.5553770643//-////36445764777777777%7
+[mehdiyev.l@explorer-01 mehdiyev.l]$ # 2. From your home directory, and without changing directories, use one short command to print the contents of all of the files in the untrimmed_fastq directory
+[mehdiyev.l@explorer-01 mehdiyev.l]$ cd ~
+[mehdiyev.l@explorer-01 ~]$ cat /courses/BIOL2406.202710/students/mehdiyev.l/UNIX_HPC/Sea_cuke/*.fastq
+@SRR6805880.2151832 OCD6D:00225:02960 length=80
+TGCAGAAGGCATGACCTTACCTACTGAATAAAAGATGAGACACCTTCTCATTGGCCAAGAAGAAACAACACTCTATTACA
++
+47:7775<59999995:6;;5:7664621111*/52245554404/33533/3/30436724461./,.:79999:4:9:
+@SRR6805880.576388 9F8KO:05533:11649 length=80
+TGCAGTCGTAATCTAGGAACACACCTACGGGATTATTTACTATTTTACAATCCATAGTCGGAGTCTACAAACAGTTACCA
++
+135445878868?;:7474889//+/665628958::2788:>;;09:9556-315447817999::;::28///27:18
+@SRR6805880.501486 9F8KO:05578:13178 length=80
+TGCAGCAAGACCGTAGATCTGTCAAACGCAAAGCTTTAGCGAGCTCTCTAAGTAGCTTGAGAGGTCTGAAGAGAGCAGTG
+#edited to save space
+[mehdiyev.l@explorer-01 ~]$ # Completed Exercise 2
+[mehdiyev.l@explorer-01 ~]$ # Exercise 3
+[mehdiyev.l@explorer-01 ~]$ # 1. What are the next three nucleotides (characters) after the first instance of the sequence quoted above?
+[mehdiyev.l@explorer-01 ~]$ grep -o 'TTTTT...' /courses/BIOL2406.202710/students/mehdiyev.l/UNIX_HPC/Sea_cuke/SRR6805880.tiny.fastq | head -n 1
+TTTTTTCG
+[mehdiyev.l@explorer-01 ~]$ # The next three nucleotides are TCG.
+[mehdiyev.l@explorer-01 ~]$ # Starting Exercise 4
+[mehdiyev.l@explorer-01 ~]$ # 1. Make sure that you have deleted your backup directory and all files it contains.
+[mehdiyev.l@explorer-01 ~]$ cd /courses/BIOL2406.202710/students/mehdiyev.l/UNIX_HPC/Sea_cuke
+[mehdiyev.l@explorer-01 Sea_cuke]$ rm -r backup
+rm: remove write-protected regular file 'backup/SRR6805880-backup.fastq'? y
+rm: remove write-protected regular file 'backup/SRR6805881-backup.fastq'? y
+[mehdiyev.l@explorer-01 Sea_cuke]$ # 2. Create a backup of each of your FASTQ files
+[mehdiyev.l@explorer-01 Sea_cuke]$ cp SRR6805880.tiny.fastq SRR6805880-backup.fastq
+[mehdiyev.l@explorer-01 Sea_cuke]$ cp SRR6805881.tiny.fastq SRR6805881-backup.fastq
+[mehdiyev.l@explorer-01 Sea_cuke]$ # 3. Use a wildcard to move all of your backup files to a new backup directory.
+[mehdiyev.l@explorer-01 Sea_cuke]$ mkdir backup
+[mehdiyev.l@explorer-01 Sea_cuke]$ mv *-backup.fastq backup/
+[mehdiyev.l@explorer-01 Sea_cuke]$ # 4. Change the permissions on all of your backup files to be write-protected.
+[mehdiyev.l@explorer-01 Sea_cuke]$ chmod -w backup/*-backup.fastq
+[mehdiyev.l@explorer-01 Sea_cuke]$ ls -l backup
+total 414
+-r-xr-xr-x 1 mehdiyev.l BIOL2406.202710-staff 211676 Sep 25 14:28 SRR6805880-backup.fastq
+-r-xr-xr-x 1 mehdiyev.l BIOL2406.202710-staff 211550 Sep 25 14:29 SRR6805881-backup.fastq
+[mehdiyev.l@explorer-01 Sea_cuke]$ # Completed Exercise 4
+[mehdiyev.l@explorer-01 Sea_cuke]$ # Starting Exercise 5
+[mehdiyev.l@explorer-01 Sea_cuke]$ # 1. Search for the sequence GNATNACCACTTCC
+[mehdiyev.l@explorer-01 Sea_cuke]$ grep -B1 GNATNACCACTTCC SRR6805880.tiny.fastq
+[mehdiyev.l@explorer-01 Sea_cuke]$ # 2. Search for the sequence AAGTT in both FASTQ files.
+[mehdiyev.l@explorer-01 Sea_cuke]$ grep -B1 AAGTT *.fastq
+SRR6805880.tiny.fastq-@SRR6805880.2431709 OCD6D:04853:12788 length=80
+SRR6805880.tiny.fastq:TGCAGAACAATGCCAGATCCGATCGGCGGCGTAAGAATATTTACGCCTAGCCGTAGTGGAAAGTTTCGATCAGTAGTGTC
+--
+SRR6805880.tiny.fastq-@SRR6805880.2650879 OCD6D:08421:10569 length=80
+SRR6805880.tiny.fastq:TGCAGACAATTTTTGCATACCCAGCTTTCTGTACCTACTGTCAGAGAGCGGCAAAGTTCATCTAAATTTTTAAACGCCC
+--
+SRR6805880.tiny.fastq-@SRR6805880.2328704 OCD6D:08744:09692 length=80
+SRR6805880.tiny.fastq:TGCAGGTTCTAGTTGTAAATCGGTCTCAAGTAATTGCGTCTCCTTTTAAAATAAGTTATACAATCCATATACTTCCTTCA
+--
+SRR6805880.tiny.fastq-@SRR6805880.1709367 OCD6D:00690:13463 length=80
+SRR6805880.tiny.fastq:TGCAGTGTATCATTTTGAGGAAAGTAAAGTATAATGTAAGGAAGTTAAGAAAATAAATCCTTAAATTGTTTGCGAAACT
+#edited to save space
+[mehdiyev.l@explorer-01 Sea_cuke]$ # Completed Exercise 5
+[mehdiyev.l@explorer-01 Sea_cuke]$ # Starting Exercise 6
+[mehdiyev.l@explorer-01 Sea_cuke]$ # How many sequences are there in SRR6805880.tiny.fastq?
+[mehdiyev.l@explorer-01 Sea_cuke]$ wc -l SRR6805880.tiny.fastq
+4000 SRR6805880.tiny.fastq
+[mehdiyev.l@explorer-01 Sea_cuke]$ # 4000 lines / 4 lines per sequence = 1000 sequences
+[mehdiyev.l@explorer-01 Sea_cuke]$ # Completed Exercise 6
+[mehdiyev.l@explorer-01 Sea_cuke]$ # Starting Exercise 7
+[mehdiyev.l@explorer-01 Sea_cuke]$ # Print the file prefix of all of the .txt files in our current directory.
+[mehdiyev.l@explorer-01 Sea_cuke]$ for filename in *.txt
+> do
+> name=$(basename ${filename} .txt)
+> echo ${name}
+> done
+bad_reads
+seq_info
+[mehdiyev.l@explorer-01 Sea_cuke]$ # Completed Exercise 7
+[mehdiyev.l@explorer-01 Sea_cuke]$ # Starting Exercise 8
+[mehdiyev.l@explorer-01 Sea_cuke]$ # Remove _2021 from all of the .txt files.
+[mehdiyev.l@explorer-01 Sea_cuke]$ for filename in *_2021.txt
+> do
+> name=$(basename ${filename} _2021.txt)
+> mv ${filename} ${name}.txt
+> done
+[mehdiyev.l@explorer-01 Sea_cuke]$ # Completed Exercise 8
+[mehdiyev.l@explorer-01 Sea_cuke]$ # Starting Exercise 9
+[mehdiyev.l@explorer-01 Sea_cuke]$ # Open nano and add the date to the top of the file and save the file as README.txt.
+[mehdiyev.l@explorer-01 Sea_cuke]$ nano README.txt
+[mehdiyev.l@explorer-01 Sea_cuke]$ # Completed Exercise 9
+[mehdiyev.l@explorer-01 Sea_cuke]$ # Starting Exercise 10
+[mehdiyev.l@explorer-01 Sea_cuke]$ # 1. Open bad-reads-script.sh and add the line echo "Script finished!" after the grep command and save the file.
+[mehdiyev.l@explorer-01 Sea_cuke]$ # 2. Run the updated script.
+[mehdiyev.l@explorer-01 Sea_cuke]$ nano bad-reads-script.sh
+[mehdiyev.l@explorer-01 Sea_cuke]$ bash bad-reads-script.sh
+Script finished!
+[mehdiyev.l@explorer-01 Sea_cuke]$ # Completed Exercise 10
