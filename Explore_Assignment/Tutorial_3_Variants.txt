@@ -1,0 +1,279 @@
+(base) [mehdiyev.l@explorer-01 mehdiyev.l]$ cd ~/sea_cuke_work
+# Confirm the six small FASTQ read files.
+(base) [mehdiyev.l@explorer-01 sea_cuke_work]$ ls *.tiny.fastq
+SRR6805880.tiny.fastq  SRR6805882.tiny.fastq  SRR6805884.tiny.fastq
+SRR6805881.tiny.fastq  SRR6805883.tiny.fastq  SRR6805885.tiny.fastq
+# Locate the reference genome provided in the course folders.
+(base) [mehdiyev.l@explorer-01 sea_cuke_work]$ find /courses/BIOL2406.202710 -name "Ppar_tinygenome.fna" 2>/dev/null
+/courses/BIOL2406.202710/students/mehdiyev.l/UNIX_HPC/Sea_cuke/Ppar_tinygenome.fna
+/courses/BIOL2406.202710/students/mehdiyev.l/class_work/fastq_files/Sea_cuke/Ppar_tinygenome.fna
+(base) [mehdiyev.l@explorer-01 sea_cuke_work]$ cp /courses/BIOL2406.202710/students/mehdiyev.l/UNIX_HPC/Sea_cuke/Ppar_tinygenome.fna ~/sea_cuke_work/
+# Confirm the reference genome file is present.
+(base) [mehdiyev.l@explorer-01 sea_cuke_work]$ ls -lh Ppar_tinygenome.fna
+-rwxr-xr-x 1 mehdiyev.l users 80M Oct 16 16:16 Ppar_tinygenome.fna
+# Inspect the genome FASTA header and beginning of the sequence.
+(base) [mehdiyev.l@explorer-01 sea_cuke_work]$ head -n 5 Ppar_tinygenome.fna
+>KN893585.1 Parastichopus parvimensis isolate Sea Cucumber 01 unplaced genomic scaffold Scaffold11424, whole genome shotgun sequence
+CATATATGTGAGAGAAAAGTGCATTGACCTGGCTTTAACTTGACAACAAGACTGTTTCCCGCTCGTTACGAATAATCTTCTATATCCTAATAATCGCTATGCAAGGCTATAAGcaatatcacataatatcacACCAGCTTGTAAGGTTACATTTAAACATCAGGTGGTTATTTCCAATTA ... [sequence line shortened]
+>KN897506.1 Parastichopus parvimensis isolate Sea Cucumber 01 unplaced genomic scaffold Scaffold15978, whole genome shotgun sequence
+TGACATGGAGTACTCAATTTCATACTGCTGGCAGGTACTGATTGTGATAGTGGGATCAACGTGTCTGAGTGCCTCTTAGTGGGTCCACTGTGTCTAAGTGGGATCAATGGTTCTGTGTGCCTCTTAGTGGGATCAATGTGTCTGTGTGCCTCTTAGTGGGATCAGTGTCTTAGTGGGATC ... [sequence line shortened]
+>JXUT01146130.1 Apostichopus parvimensis isolate Sea Cucumber 01 contig_146132, whole genome shotgun sequence
+# Edited extraneous lines
+# Inspect two FASTQ records and their quality lines.
+(base) [mehdiyev.l@explorer-01 sea_cuke_work]$ head -n 8 SRR6805880.tiny.fastq
+@SRR6805880.2151832 OCD6D:00225:02960 length=80
+TGCAGAAGGCATGACCTTACCTACTGAATAAAAGATGAGACACCTTCTCATTGGCCAAGAAGAAACAACACTCTATTACA
++
+47:7775<59999995:6;;5:7664621111*/52245554404/33533/3/30436724461./,.:79999:4:9:
+@SRR6805880.576388 9F8KO:05533:11649 length=80
+TGCAGTCGTAATCTAGGAACACACCTACGGGATTATTTACTATTTTACAATCCATAGTCGGAGTCTACAAACAGTTACCA
++
+135445878868?;:7474889//+/665628958::2788:>;;09:9556-315447817999::;::28///27:18
+# Count FASTQ lines, four lines represent one read.
+(base) [mehdiyev.l@explorer-01 sea_cuke_work]$ wc -l SRR6805880.tiny.fastq
+4000 SRR6805880.tiny.fastq
+# Count FASTQ lines, four lines represent one read.
+(base) [mehdiyev.l@explorer-01 sea_cuke_work]$ wc -l SRR680588*.tiny.fastq
+   4000 SRR6805880.tiny.fastq
+   4000 SRR6805881.tiny.fastq
+   4000 SRR6805882.tiny.fastq
+   4000 SRR6805883.tiny.fastq
+   4000 SRR6805884.tiny.fastq
+   4000 SRR6805885.tiny.fastq
+  24000 total
+# Load FastQC to inspect read quality.
+(base) [mehdiyev.l@explorer-01 sea_cuke_work]$ module load fastqc/0.12.1
+Loading fastqc/0.12.1
+  Loading requirement: OpenJDK/22.0.2 perl/5.40.0
+# Run initial read quality control.
+(base) [mehdiyev.l@explorer-01 sea_cuke_work]$ fastqc SRR6805880.tiny.fastq
+Started analysis of SRR6805880.tiny.fastq
+Approx 100% complete for SRR6805880.tiny.fastq
+Analysis complete for SRR6805880.tiny.fastq
+Killed
+# Edited extraneous lines
+# FastQC reported "Killed" after analysis. The HTML report was verified in the next step.
+# Check that the FastQC HTML report was created.
+(base) [mehdiyev.l@explorer-01 sea_cuke_work]$ ls SRR6805880.tiny_fastqc.html
+SRR6805880.tiny_fastqc.html
+# List available FastQC reports.
+(base) [mehdiyev.l@explorer-01 sea_cuke_work]$ ls *fastqc.html
+SRR6805880.tiny_fastqc.html  SRR6805883.tiny_fastqc.html
+SRR6805880.trim_fastqc.html  SRR6805883.trim_fastqc.html
+SRR6805881.tiny_fastqc.html  SRR6805884.tiny_fastqc.html
+SRR6805881.trim_fastqc.html  SRR6805884.trim_fastqc.html
+SRR6805882.tiny_fastqc.html  SRR6805885.tiny_fastqc.html
+SRR6805882.trim_fastqc.html  SRR6805885.trim_fastqc.html
+# Request an interactive computing node for analysis
+(base) [mehdiyev.l@explorer-01 sea_cuke_work]$ srun --pty bash
+srun: job 11144460 queued and waiting for resources
+srun: job 11144460 has been allocated resources
+# Activate cutadapt environment
+(base) [mehdiyev.l@c0607 sea_cuke_work]$ ls /courses/BIOL2406.202710/shared/
+angsd_env  cutadapt_env  emboss_env  star_env
+(base) [mehdiyev.l@c0607 sea_cuke_work]$ conda activate /courses/BIOL2406.202710/shared/cutadapt_env
+# Remove the 5-prime adapter sequence from a test FASTQ file.
+(/courses/BIOL2406.202710/shared/cutadapt_env) [mehdiyev.l@c0607 sea_cuke_work]$ cutadapt -g TGCAG SRR6805880.tiny.fastq -o SRR6805880.tiny_trimmed.fastq
+Total reads processed:                   1,000
+Reads with adapters:                     1,000 (100.0%)
+Reads written (passing filters):         1,000 (100.0%)
+Total basepairs processed:        80,000 bp
+Total written (filtered):         75,000 bp (93.8%)
+Sequence: TGCAG; Type: regular 5'; Length: 5; Trimmed: 1000 times
+# Edited extraneous text
+# Process all six FASTQ files: trim adapter sequences with cutadapt.
+(/courses/BIOL2406.202710/shared/cutadapt_env) [mehdiyev.l@c0607 sea_cuke_work]$ for filename in *.tiny.fastq
+do
+    base=$(basename $filename .tiny.fastq)
+    echo ${base}
+
+    cutadapt -g TGCAG ${base}.tiny.fastq -o ${base}.tiny_trimmed.fastq
+done
+Total reads processed:                   1,000
+Reads with adapters:                     1,000 (100.0%)
+Reads written (passing filters):         1,000 (100.0%)
+Total basepairs processed:        80,000 bp
+Total written (filtered):         75,000 bp (93.8%)
+Sequence: TGCAG; Type: regular 5'; Length: 5; Trimmed: 1000 times
+# Edited extraneous text
+# Confirm trimmed FASTQ files were created.
+(/courses/BIOL2406.202710/shared/cutadapt_env) [mehdiyev.l@c0607 sea_cuke_work]$ ls *trimmed*
+SRR6805880.tiny_trimmed.fastq  SRR6805882.tiny_trimmed.fastq  SRR6805884.tiny_trimmed.fastq
+SRR6805881.tiny_trimmed.fastq  SRR6805883.tiny_trimmed.fastq  SRR6805885.tiny_trimmed.fastq
+# Load Bowtie2 for read alignment.
+(/courses/BIOL2406.202710/shared/cutadapt_env) [mehdiyev.l@c0607 sea_cuke_work]$ module load bowtie2/2.5.4
+# Build the reference genome alignment index.
+(/courses/BIOL2406.202710/shared/cutadapt_env) [mehdiyev.l@c0607 sea_cuke_work]$ bowtie2-build Ppar_tinygenome.fna Ppar_tinygenome
+Renaming Ppar_tinygenome.3.bt2.tmp to Ppar_tinygenome.3.bt2
+Renaming Ppar_tinygenome.4.bt2.tmp to Ppar_tinygenome.4.bt2
+Renaming Ppar_tinygenome.1.bt2.tmp to Ppar_tinygenome.1.bt2
+# Edited extraneous text
+# Create a directory for the Bowtie2 index files.
+(/courses/BIOL2406.202710/shared/cutadapt_env) [mehdiyev.l@c0607 sea_cuke_work]$ mkdir index
+# Move index files into the index directory.
+(/courses/BIOL2406.202710/shared/cutadapt_env) [mehdiyev.l@c0607 sea_cuke_work]$ mv Ppar_tinygenome*.bt2 index/
+# Map adapter-trimmed reads to the indexed sea cucumber genome.
+(/courses/BIOL2406.202710/shared/cutadapt_env) [mehdiyev.l@c0607 sea_cuke_work]$ for filename in *.tiny_trimmed.fastq
+do
+    base=$(basename $filename .tiny_trimmed.fastq)
+    echo ${base}
+
+    bowtie2 -x index/Ppar_tinygenome -U ${base}.tiny_trimmed.fastq -S ${base}.sam
+done
+SRR6805880: 21.80% overall alignment rate
+SRR6805881: 21.80% overall alignment rate
+SRR6805882: 22.80% overall alignment rate
+SRR6805883: 20.80% overall alignment rate
+SRR6805884: 21.10% overall alignment rate
+SRR6805885: 23.40% overall alignment rate
+# Edited extraneous text
+# Load samtools for SAM-to-BAM conversion.
+(/courses/BIOL2406.202710/shared/cutadapt_env) [mehdiyev.l@c0607 sea_cuke_work]$ module load samtools/1.21
+# Convert and sort the six SAM alignment files into BAM format.
+(/courses/BIOL2406.202710/shared/cutadapt_env) [mehdiyev.l@c0607 sea_cuke_work]$ for filename in *.sam
+do
+    base=$(basename $filename .sam)
+    echo ${base}
+
+    samtools view -bhS ${base}.sam | samtools sort -o ${base}.bam
+done
+SRR6805880
+SRR6805881
+SRR6805882
+SRR6805883
+SRR6805884
+SRR6805885
+# Leave the current conda environment
+(/courses/BIOL2406.202710/shared/cutadapt_env) [mehdiyev.l@c0607 sea_cuke_work]$ conda deactivate
+(base) [mehdiyev.l@c0607 sea_cuke_work]$ ls /courses/BIOL2406.202710/shared/
+angsd_env  cutadapt_env  emboss_env  star_env
+# Inspect the result of this analysis step.
+(base) [mehdiyev.l@c0607 sea_cuke_work]$ conda activate /courses/BIOL2406.202710/shared/angsd_env
+# Create the BAM file list for ANGSD.
+(/courses/BIOL2406.202710/shared/angsd_env) [mehdiyev.l@c0607 sea_cuke_work]$ ls *.bam > bam.filelist
+# Verify that the BAM file list contains six samples.
+(/courses/BIOL2406.202710/shared/angsd_env) [mehdiyev.l@c0607 sea_cuke_work]$ cat bam.filelist
+SRR6805880.bam
+SRR6805881.bam
+SRR6805882.bam
+SRR6805883.bam
+SRR6805884.bam
+SRR6805885.bam
+# Estimate genotype likelihoods and filter variant sites using the specified SNP p-value.
+(/courses/BIOL2406.202710/shared/angsd_env) [mehdiyev.l@c0607 sea_cuke_work]$ angsd -bam bam.filelist -GL 1 -out genotype_likelihoods -doMaf 2 -SNP_pval 1e-2 -doMajorMinor 1
+[multiReader] 6 samples in 6 input files
+	-> SNP-filter using a pvalue: 1.000000e-02 correspond to 6.634897 likelihood units
+	-> Output filenames:
+		->"genotype_likelihoods.mafs.gz"
+	-> Total number of sites analyzed: 71450
+	-> Number of sites retained after filtering: 9 
+	[ALL done] cpu-time used =  1.03 sec
+	[ALL done] walltime used =  1.00 sec
+# Edited extraneous text
+# Confirm the six small FASTQ read files.
+(/courses/BIOL2406.202710/shared/angsd_env) [mehdiyev.l@c0607 sea_cuke_work]$ ls *.tiny.fastq
+SRR6805880.tiny.fastq  SRR6805882.tiny.fastq  SRR6805884.tiny.fastq
+SRR6805881.tiny.fastq  SRR6805883.tiny.fastq  SRR6805885.tiny.fastq
+# Process all six FASTQ files: map untrimmed reads for exercise 1.
+(/courses/BIOL2406.202710/shared/angsd_env) [mehdiyev.l@c0607 sea_cuke_work]$ for filename in *.tiny.fastq
+do
+    base=$(basename "$filename" .tiny.fastq)
+    echo "$base"
+    bowtie2 -x index/Ppar_tinygenome -U "$filename" -S "${base}_untrimmed.sam"
+done
+SRR6805880: 22.00% overall alignment rate
+SRR6805881: 21.30% overall alignment rate
+SRR6805882: 22.30% overall alignment rate
+SRR6805883: 21.30% overall alignment rate
+SRR6805884: 21.20% overall alignment rate
+SRR6805885: 23.10% overall alignment rate
+# Edited extraneous text and combined the alignment rates with the FASTQ
+# Activate the shared cutadapt environment.
+(/courses/BIOL2406.202710/shared/angsd_env) [mehdiyev.l@c0607 sea_cuke_work]$ conda activate /courses/BIOL2406.202710/shared/cutadapt_env
+# Trim all six FASTQ files to 70 bp for exercise 2.
+(/courses/BIOL2406.202710/shared/cutadapt_env) [mehdiyev.l@c0607 sea_cuke_work]$ for filename in *.tiny.fastq
+do
+    base=$(basename "$filename" .tiny.fastq)
+    echo "$base"
+    cutadapt -l 70 "$filename" -o "${base}.tiny_70bp.fastq"
+done
+Total reads processed:                   1,000
+Reads written (passing filters):         1,000 (100.0%)
+
+Total basepairs processed:        80,000 bp
+Total written (filtered):         70,000 bp (87.5%)
+# Edited extraneous lines
+# Map the reads shortened to 70 bp for exercise 2.
+(/courses/BIOL2406.202710/shared/cutadapt_env) [mehdiyev.l@c0607 sea_cuke_work]$ for filename in *.tiny_70bp.fastq
+do
+    base=$(basename "$filename" .tiny_70bp.fastq)
+    echo "$base"
+    bowtie2 -x index/Ppar_tinygenome -U "$filename" -S "${base}_70bp.sam"
+done
+SRR6805880: 21.50% overall alignment rate
+SRR6805881: 20.90% overall alignment rate
+SRR6805882: 21.60% overall alignment rate
+SRR6805883: 20.70% overall alignment rate
+SRR6805884: 20.60% overall alignment rate
+SRR6805885: 23.00% overall alignment rate
+# Edited extraneous lines and combined the FASTQ with their alignment rates
+# Leave conda environment 
+(/courses/BIOL2406.202710/shared/cutadapt_env) [mehdiyev.l@c0607 sea_cuke_work]$ conda deactivate
+# Estimate genotype likelihoods and filter variant sites using the specified SNP p-value.
+(/courses/BIOL2406.202710/shared/angsd_env) [mehdiyev.l@c0607 sea_cuke_work]$ angsd -bam bam.filelist -GL 1 -out genotype_pval_001 -doMaf 2 -SNP_pval 1e-3 -doMajorMinor 1
+[multiReader] 6 samples in 6 input files
+	-> SNP-filter using a pvalue: 1.000000e-03 correspond to 10.827566 likelihood units
+	-> Output filenames:
+		->"genotype_pval_001.mafs.gz"
+	-> Total number of sites analyzed: 71450
+	-> Number of sites retained after filtering: 0 
+	[ALL done] cpu-time used =  1.03 sec
+	[ALL done] walltime used =  1.00 sec
+# Edited extraneous lines
+# Estimate genotype likelihoods and filter variant sites using the specified SNP p-value.
+(/courses/BIOL2406.202710/shared/angsd_env) [mehdiyev.l@c0607 sea_cuke_work]$ angsd -bam bam.filelist -GL 1 -out genotype_pval_005 -doMaf 2 -SNP_pval 5e-2 -doMajorMinor 1
+[multiReader] 6 samples in 6 input files
+	-> SNP-filter using a pvalue: 5.000000e-02 correspond to 3.841459 likelihood units
+	-> Output filenames:
+		->"genotype_pval_005.mafs.gz"
+	-> Total number of sites analyzed: 71450
+	-> Number of sites retained after filtering: 39 
+	[ALL done] cpu-time used =  1.03 sec
+	[ALL done] walltime used =  1.00 sec
+# Edited extraneous lines
+# List the generated files and their sizes to verify the analysis outputs.
+(/courses/BIOL2406.202710/shared/angsd_env) [mehdiyev.l@c0607 sea_cuke_work]$ ls -lh
+total 103M
+-rw-r--r-- 1 mehdiyev.l users   90 Oct 16 16:41 bam.filelist
+-rw-r--r-- 1 mehdiyev.l users 8.3K Oct 16 16:42 genotype_likelihoods.arg
+-rw-r--r-- 1 mehdiyev.l users  295 Oct 16 16:42 genotype_likelihoods.mafs.gz
+-rw-r--r-- 1 mehdiyev.l users 8.3K Oct 16 16:47 genotype_pval_001.arg
+-rw-r--r-- 1 mehdiyev.l users  102 Oct 16 16:47 genotype_pval_001.mafs.gz
+# Edited extraneous lines
+# In class exercise answers
+# 1. Map the untrimmed reads. How do alignments compare?
+Sample          Adapter-trimmed     Untrimmed
+SRR6805880      21.80%              22.00%
+SRR6805881      21.80%              21.30%
+SRR6805882      22.80%              22.30%
+SRR6805883      20.80%              21.30%
+SRR6805884      21.10%              21.20%
+SRR6805885      23.40%              23.10%
+The alignments are very similar. Adapter trimming slightly improved some of the samples and slightly reduced others. There are no consistent large differences.
+
+# 2. Trim to 70 bp and remap. How do these compare to the first trimmed reads?
+Sample          Original trimmed    70-bp reads
+SRR6805880      21.80%              21.50%
+SRR6805881      21.80%              20.90%
+SRR6805882      22.80%              21.60%
+SRR6805883      20.80%              20.70%
+SRR6805884      21.10%              20.60%
+SRR6805885      23.40%              23.00%
+Mapping rates for the 70-bp were slightly lower in every sample. This is consistent with shorter reads providing less sequence information for alignment.
+
+# 3. Change ANGSD SNP p-value. How many more/less SNPs are recovered?
+SNP p-value     Sites retained after filtering
+0.001           0
+0.01            9
+0.05            39
+A threshold of 0.001 retained 9 fewer sites than 0.01. The threshold of 0.05 retained 30 more sites than 0.01. All of the runs analyzed 71,450 sites. The ANGSD output reports retained sites after filtering and are the counts used for the exercises. 

@@ -1,0 +1,128 @@
+(base) [mehdiyev.l@explorer-01 ~]$ cd /courses/BIOL2406.202710/students/mehdiyev.l/
+# Request a compute node before analysis
+(base) [mehdiyev.l@explorer-01 mehdiyev.l]$ srun --pty bash
+srun: job 10921529 queued and waiting for resources
+srun: job 10921529 has been allocated resources
+# Compute node allocated
+(base) [mehdiyev.l@c0592 mehdiyev.l]$ ls
+bioinformatics-portfolio                        SRR1039509
+class_work                                      SRR1039509_1.fastq
+fasterq.tmp.c0651.3995450                       SRR1039509_2.fastq
+fishBp.fasta                                    SRR1039512
+GCF_000002985.6_WBcel235_genomic.fna            SRR1039512_1.fastq
+GCF_000008685.2_ASM868v2_genomic.fna            SRR1039512_2.fastq
+# Edited extraneous text
+# Preview the lambda phage FASTA reference.
+(base) [mehdiyev.l@c0592 mehdiyev.l]$ head GCF_000840245.1_ViralProj14204_genomic.fna
+>NC_001416.1 Enterobacteria phage lambda, complete genome
+GGGCGGCGACCTCGCGGGTTTTCGCTATTTATGAAAATTTTCCGGTTTAAGGCGTTTCCGTTCTTCTTCGTCATAACTTA
+ATGTTTTTATTTAAAATACCCTCTGAAAAGAAAGGAAACGACAGGTGCTGAAAGCGAGGCTTTTTGGCCTCTGTCGTTTC
+CTTTCTCTGTTTTTGTCCGTGGAATGAACAATGGAAGTCAACAAAAAGCAGCTGGCTGACATTTTCGGTGCGAGTATCCG
+TACCATTCAGAACTGGCAGGAACAGGGAATGCCCGTTCTGCGAGGCGGTGGCAAGGGTAATGAGGTGCTTTATGACTCTG
+CCGCCGTCATAAAATGGTATGCCGAAAGGGATGCTGAAATTGAGAACGAAAAGCTGCGCCGGGAGGTTGAAGAACTGCGG
+# Edited extraneous text
+# FASTA header identifies lambda phage accession NC_001416.1.
+# Preview the first FASTQ file to examine the sequencing reads and their quality scores.
+(base) [mehdiyev.l@c0592 mehdiyev.l]$ head reads_1.fq
+@r1
+TGAATGCGAACTCCGGGACGCTCAGTAATGTGACGATAGCTGAAAACTGTACGATAAACNGTACGCTGAGGGCAGAAAAAATCGTCGGGGACATTNTAAAGGCGGCGAGCGCGGCTTTTCCG
++
++"@6<:27(F&5)9)"B:%B+A-%5A?2$HCB0B+0=D<7E/<.03#!.F77@6B==?C"7>;))%;,3-$.A06+<-1/@@?,26">=?*@'0;$:;??G+:#+(A?9+10!8!?()?7C>
+# Edited extraneous text
+# FASTQ records contain read IDs, sequences, and quality scores.
+# Preview the second FASTQ read file.
+(base) [mehdiyev.l@c0592 mehdiyev.l]$ head reads_2.fq
+@r1
+NAACGTCAGCGGAAGCACCACTATCTGGCGATCAAAAGGATGGTCATCGGTCACGGTGACAGTACGGGTACCTGACGGCCAGTCCACACTGCTTTCACGCTGGCGCGGNAAAGCCGCGCTCGCCGCCTNTACNATGTCCCCGACGATTTTTTCCGCCCTCAGCGTACCGTTTATCGTACAGTTTTCAGCTATCGTCAC
++
+&?$F&9AC8H49@5<*>=E;2/G+;9?&8D.;E!2:0B/)++#F-><E,-/&F:&/#B=*'C?@$0!+#1?.ABC?:-?9GA?,11.2>3$&@-'6;!6@D?&#*E:C#9-4&8?"))H>H9-->((E99;:@::1=1-!+$@$8+#@%(<B,+%6!>@0G*D5A'(>9AC<;@01:7@:@0D&D=@:>7"1)D+9+B
+# Edited extraneous text
+# The paired FASTQ file has read IDs, sequences, and quality scores.
+# Count the lines in both FASTQ files to determine the number of sequencing reads.
+(base) [mehdiyev.l@explorer-02 mehdiyev.l]$ wc -l reads_1.fq reads_2.fq
+4000 reads_1.fq
+4000 reads_2.fq
+8000 total
+# Each FASTQ file contains 1,000 reads because each read occupies four lines.
+# Determine the lambda phage genome length by excluding the FASTA header and line breaks.
+(base) [mehdiyev.l@explorer-02 mehdiyev.l]$ grep -v '^>' GCF_000840245.1_ViralProj14204_genomic.fna | tr -d '\n' | wc -c
+48502
+# The lambda phage genome contains 48,502 base pairs.
+# Load Bowtie 2 for reference indexing and read alignment               
+(base) [mehdiyev.l@c0592 mehdiyev.l]$ module load bowtie2/2.5.4
+(base) [mehdiyev.l@c0592 mehdiyev.l]$ ls
+bioinformatics-portfolio                        SRR1039509
+class_work                                      SRR1039509_1.fastq
+fasterq.tmp.c0651.3995450                       SRR1039509_2.fastq
+fishBp.fasta                                    SRR1039512
+# Edited extraneous text
+(base) [mehdiyev.l@c0592 mehdiyev.l]$ module list
+Currently Loaded Modulefiles:
+ 1) explorer/1.0   2) bowtie2/2.5.4  
+# Loaded modules shown
+# Build a Bowtie 2 index from the lambda phage reference FASTA.
+(base) [mehdiyev.l@c0592 mehdiyev.l]$ bowtie2-build GCF_000840245.1_ViralProj14204_genomic.fna lambda_virus
+Renaming lambda_virus.3.bt2.tmp to lambda_virus.3.bt2
+Renaming lambda_virus.4.bt2.tmp to lambda_virus.4.bt2
+Renaming lambda_virus.1.bt2.tmp to lambda_virus.1.bt2
+Renaming lambda_virus.2.bt2.tmp to lambda_virus.2.bt2
+# Edited extraneous text
+# Six lambda_virus Bowtie 2 index files were generated.
+# Align unpaired reads to the lambda phage reference.
+(base) [mehdiyev.l@c0592 mehdiyev.l]$ bowtie2 -x lambda_virus -U reads_1.fq -S eg1.sam
+10000 reads; of these:
+    9404 (94.04%) aligned exactly 1 time
+94.04% overall alignment rate
+# Edited extraneous text
+# 10,000 reads processed; 94.04% overall alignment rate.
+# Preview the SAM alignment file and header.
+(base) [mehdiyev.l@c0592 mehdiyev.l]$ head eg1.sam
+@HD	VN:1.5	SO:unsorted	GO:query
+@SQ	SN:NC_001416.1	LN:48502
+@PG	ID:bowtie2	PN:bowtie2	VN:2.5.4	CL:"/shared/EL9/explorer/bowtie2/2.5.4/src/bowtie2-2.5.4-linux-x86_64/bowtie2-align-s --wrapper basic-0 -x lambda_virus -S eg1.sam -U reads_1.fq"
+# Edited extraneous text
+# SAM header lists lambda reference NC_001416.1 and its length of 48,502 bases.
+# Align paired-end reads to the lambda phage reference.
+(base) [mehdiyev.l@c0592 mehdiyev.l]$ bowtie2 -x lambda_virus -1 reads_1.fq -2 reads_2.fq -S eg2.sam 
+10000 reads; of these:
+    9166 (91.66%) aligned concordantly exactly 1 time
+        579 (36.55%) aligned exactly 1 time
+94.97% overall alignment rate
+# Edited extraneous text
+# 10,000 read pairs processed. 94.97% overall alignment rate.
+# Load SAMtools for alignment-file processing.
+(base) [mehdiyev.l@c0592 mehdiyev.l]$ module load samtools/1.21
+# SAMtools module loaded
+# Load BCFtools for variant analysis.
+(base) [mehdiyev.l@c0592 mehdiyev.l]$ module load bcftools/1.21
+# BCFtools module loaded
+# Verify that the required modules are loaded.
+(base) [mehdiyev.l@c0592 mehdiyev.l]$ module list
+Currently Loaded Modulefiles:
+ 1) explorer/1.0   2) bowtie2/2.5.4   3) samtools/1.21   4) bcftools/1.21  
+# Loaded modules shown
+# Convert the paired-end SAM alignment to BAM format.
+(base) [mehdiyev.l@c0592 mehdiyev.l]$ samtools view -bS eg2.sam > eg2.bam 
+(base) [mehdiyev.l@c0592 mehdiyev.l]$ ls
+bioinformatics-portfolio                        lambda_virus.3.bt2      SRR1039512_2.fastq
+class_work                                      lambda_virus.4.bt2      SRR1039513
+eg1.sam                                         lambda_virus.rev.1.bt2  SRR1039513_1.fastq
+eg2.bam                                         lambda_virus.rev.2.bt2  SRR1039513_2.fastq
+# Edited extraneous text
+# Files in the working directory are displayed.
+# Sort the BAM alignments by genomic position.
+(base) [mehdiyev.l@c0592 mehdiyev.l]$ samtools sort eg2.bam -o eg2.sorted.bam
+# Sorted BAM created
+#  Verify the sorted BAM file exists.
+(base) [mehdiyev.l@c0592 mehdiyev.l]$ ls eg2.sorted.bam
+eg2.sorted.bam
+# It is present
+# Generate variant evidence using the lambda phage FASTA and sorted BAM.
+(base) [mehdiyev.l@c0592 mehdiyev.l]$ bcftools mpileup -f GCF_000840245.1_ViralProj14204_genomic.fna eg2.sorted.bam | bcftools view -Ov -o eg2.raw.vcf
+[mpileup] 1 samples in 1 input files
+[mpileup] maximum number of reads per input file set to -d 250
+# BCFtools processed one sample and wrote eg2.raw.vcf.
+# Export the variant calls to a readable text file.
+(base) [mehdiyev.l@c0592 mehdiyev.l]$ bcftools view eg2.raw.vcf > variants.txt
+# Inspect the variant calls in variants.txt.
+(base) [mehdiyev.l@c0592 mehdiyev.l]$ less variants.txt

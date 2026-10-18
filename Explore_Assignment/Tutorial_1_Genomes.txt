@@ -1,0 +1,250 @@
+[mehdiyev.l@explorer-02 ~]$ cd /courses/BIOL2406.202710/students/mehdiyev.l/
+[mehdiyev.l@explorer-02 mehdiyev.l]$ ls
+bioinformatics-portfolio  fishBp.fasta       grep_practice  sequences.fasta
+class_work                grep_exercise.txt  seq_files      UNIX_HPC
+# Navigate to the relevant working directory.
+[mehdiyev.l@explorer-02 mehdiyev.l]$ cd UNIX_HPC/
+[mehdiyev.l@explorer-02 UNIX_HPC]$ ls
+At_genes.gff          chr1.fasta             Sea_cuke
+At_genes_last500.gff  excel_data.csv         smallcase_chr1.fasta
+At_proteins.fasta     intron_IME_data.fasta
+[mehdiyev.l@explorer-02 UNIX_HPC]$ cd Sea_cuke/
+[mehdiyev.l@explorer-02 Sea_cuke]$ ls
+backup                  README.txt              SRR6805880.tiny.fastq.gz
+bad-reads-script.sh     scripted_bad_reads.txt  SRR6805881.tiny.fastq
+bad_reads.txt           seq_info.txt            SRR6805881.tiny.fastq.gz
+Ppar_tinygenome.fna.gz  SRR6805880.tiny.fastq
+[mehdiyev.l@explorer-02 Sea_cuke]$ cd ..
+[mehdiyev.l@explorer-02 UNIX_HPC]$ cd ..
+# Request an interactive compute-node session.
+[mehdiyev.l@explorer-02 mehdiyev.l]$ srun --pty /bin/bash
+srun: job 10739287 queued and waiting for resources
+srun: job 10739287 has been allocated resources
+# Download the Borreliella burgdorferi genome.
+[mehdiyev.l@c0689 mehdiyev.l]$ wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/008/685/GCF_000008685.2_ASM868v2/GCF_000008685.2_ASM868v2_genomic.fna.gz
+Proxy request sent, awaiting response... 200 OK
+2026-10-01 12:33:14 (12.9 MB/s) - ‘GCF_000008685.2_ASM868v2_genomic.fna.gz’ saved [406156/406156]
+# Edited extraneous text
+# Download confirmation
+# List the files in the current directory.
+[mehdiyev.l@c0689 mehdiyev.l]$ ls
+bioinformatics-portfolio                 grep_practice
+class_work                               seq_files
+fishBp.fasta                             sequences.fasta
+GCF_000008685.2_ASM868v2_genomic.fna.gz  UNIX_HPC
+grep_exercise.txt
+# Download the C. elegans genome.
+[mehdiyev.l@c0689 mehdiyev.l]$ wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/985/GCF_000002985.6_WBcel235/GCF_000002985.6_WBcel235_genomic.fna.gz
+Proxy request sent, awaiting response... 200 OK
+2026-10-01 12:34:11 (134 MB/s) - ‘GCF_000002985.6_WBcel235_genomic.fna.gz’ saved [31710738/31710738]
+# Edited extraneous text
+# Download confirmation
+# List the files in the current directory.
+[mehdiyev.l@c0689 mehdiyev.l]$ ls
+bioinformatics-portfolio                 grep_exercise.txt
+class_work                               grep_practice
+fishBp.fasta                             seq_files
+GCF_000002985.6_WBcel235_genomic.fna.gz  sequences.fasta
+GCF_000008685.2_ASM868v2_genomic.fna.gz  UNIX_HPC
+# Download the bacteriophage lambda genome.
+[mehdiyev.l@c0689 mehdiyev.l]$ wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/840/245/GCF_000840245.1_ViralProj14204/GCF_000840245.1_ViralProj14204_genomic.fna.gz
+Proxy request sent, awaiting response... 200 OK
+2026-10-01 12:38:12 (361 MB/s) - ‘GCF_000840245.1_ViralProj14204_genomic.fna.gz’ saved [15299/15299]
+# Edited extraneous text
+# Download confirmation
+# List the files in the current directory.
+[mehdiyev.l@c0689 mehdiyev.l]$ ls
+bioinformatics-portfolio                       grep_exercise.txt
+class_work                                     grep_practice
+fishBp.fasta                                   seq_files
+GCF_000002985.6_WBcel235_genomic.fna.gz        sequences.fasta
+GCF_000008685.2_ASM868v2_genomic.fna.gz        UNIX_HPC
+GCF_000840245.1_ViralProj14204_genomic.fna.gz
+# Download a reference sequence
+[mehdiyev.l@c0689 mehdiyev.l]$ wget https://ftp.ebi.ac.uk/pub/ensemblorganisms/GCA/000/001/405/29/ensembl/2026_04/genome/softmasked.fa.bgz.gzi
+Proxy request sent, awaiting response... 200 OK
+2026-10-01 12:41:27 (1.91 MB/s) - ‘softmasked.fa.bgz.gzi’ saved [820344/820344]
+# Edited extraneous text
+# Download confirmation
+# List the files in the current directory.
+[mehdiyev.l@c0689 mehdiyev.l]$ ls
+bioinformatics-portfolio                       grep_exercise.txt
+class_work                                     grep_practice
+fishBp.fasta                                   seq_files
+GCF_000002985.6_WBcel235_genomic.fna.gz        sequences.fasta
+GCF_000008685.2_ASM868v2_genomic.fna.gz        softmasked.fa.bgz.gzi
+GCF_000840245.1_ViralProj14204_genomic.fna.gz  UNIX_HPC
+# Remove unnecessary file
+[mehdiyev.l@c0689 mehdiyev.l]$ rm softmasked.fa.bgz.gzi
+[mehdiyev.l@c0689 mehdiyev.l]$ ls
+bioinformatics-portfolio                       grep_exercise.txt
+class_work                                     grep_practice
+fishBp.fasta                                   seq_files
+GCF_000002985.6_WBcel235_genomic.fna.gz        sequences.fasta
+GCF_000008685.2_ASM868v2_genomic.fna.gz        UNIX_HPC
+GCF_000840245.1_ViralProj14204_genomic.fna.gz
+# Download the soft-masked genome sequence file.
+[mehdiyev.l@c0689 mehdiyev.l]$ wget https://ftp.ebi.ac.uk/pub/ensemblorganisms/GCA/000/001/405/29/ensembl/2026_04/genome/softmasked.fa.bgz
+Proxy request sent, awaiting response... 200 OK
+2026-10-01 12:52:43 (3.21 MB/s) - ‘softmasked.fa.bgz’ saved [1001768220/1001768220]
+# Edited extraneous text
+# Download confirmation
+# Download example sequencing reads.
+[mehdiyev.l@c0689 mehdiyev.l]$ wget https://github.com/BenLangmead/bowtie2/raw/refs/heads/master/example/reads/reads_1.fq
+Proxy request sent, awaiting response... 200 OK
+2026-10-01 12:52:49 (34.4 MB/s) - ‘reads_1.fq’ saved [2285692/2285692]
+# Edited extraneous text
+# Download confirmation
+# Download example sequencing reads
+[mehdiyev.l@c0689 mehdiyev.l]$ wget https://github.com/BenLangmead/bowtie2/raw/refs/heads/master/example/reads/reads_2.fq
+Proxy request sent, awaiting response... 200 OK
+2026-10-01 12:53:03 (33.2 MB/s) - ‘reads_2.fq’ saved [2288866/2288866]
+# Edited extraneous text
+# Download confirmation
+# List the files in the current directory.
+[mehdiyev.l@c0689 mehdiyev.l]$ ls
+bioinformatics-portfolio                       grep_practice
+class_work                                     reads_1.fq
+fishBp.fasta                                   reads_2.fq
+GCF_000002985.6_WBcel235_genomic.fna.gz        seq_files
+GCF_000008685.2_ASM868v2_genomic.fna.gz        sequences.fasta
+GCF_000840245.1_ViralProj14204_genomic.fna.gz  softmasked.fa.bgz
+grep_exercise.txt                              UNIX_HPC
+# Decompress the reference FASTA file.
+[mehdiyev.l@c0689 mehdiyev.l]$ gunzip GCF_000002985.6_WBcel235_genomic.fna.gz
+[mehdiyev.l@c0689 mehdiyev.l]$ gunzip GCF_000008685.2_ASM868v2_genomic.fna.gz
+[mehdiyev.l@c0689 mehdiyev.l]$ gunzip GCF_000840245.1_ViralProj14204_genomic.fna.gz
+[mehdiyev.l@c0689 mehdiyev.l]$ ls
+bioinformatics-portfolio                    grep_practice
+class_work                                  reads_1.fq
+fishBp.fasta                                reads_2.fq
+GCF_000002985.6_WBcel235_genomic.fna        seq_files
+# Edited extraneous text
+# Remove unnecessary file
+[mehdiyev.l@c0689 mehdiyev.l]$ rmdir Genomes_info/
+[mehdiyev.l@c0689 mehdiyev.l]$ ls
+bioinformatics-portfolio                    grep_practice
+class_work                                  reads_1.fq
+fishBp.fasta                                reads_2.fq
+GCF_000002985.6_WBcel235_genomic.fna        seq_files
+GCF_000008685.2_ASM868v2_genomic.fna        sequences.fasta
+GCF_000840245.1_ViralProj14204_genomic.fna  softmasked.fa.bgz
+grep_exercise.txt                           UNIX_HPC
+# Open the genome information notes for editing.
+[mehdiyev.l@c0689 mehdiyev.l]$ nano Genomes_info
+# Download the human GRCh38 reference genome.
+[mehdiyev.l@c0689 mehdiyev.l]$ wget https://ftp.ensembl.org/pub/release-116/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz
+Proxy request sent, awaiting response... 200 OK
+2026-10-01 13:07:40 (3.09 MB/s) - ‘Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz’ saved [942484168/942484168]
+# Edited extraneous text
+# Download confirmation
+# List the files in the current directory.
+[mehdiyev.l@c0689 mehdiyev.l]$ ls
+bioinformatics-portfolio
+class_work
+fishBp.fasta
+GCF_000002985.6_WBcel235_genomic.fna
+GCF_000008685.2_ASM868v2_genomic.fna
+# Edited extraneous text
+# Decompress the reference FASTA file.
+[mehdiyev.l@c0689 mehdiyev.l]$ gunzip Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz
+# List the files in the current directory.
+[mehdiyev.l@c0689 mehdiyev.l]$ ls
+bioinformatics-portfolio
+class_work
+fishBp.fasta
+GCF_000002985.6_WBcel235_genomic.fna
+GCF_000008685.2_ASM868v2_genomic.fna
+# Edited extraneous text
+# Remove unnecessary file
+[mehdiyev.l@c0689 mehdiyev.l]$ rm softmasked.fa.bgz
+[mehdiyev.l@c0689 mehdiyev.l]$ ls
+bioinformatics-portfolio
+class_work
+fishBp.fasta
+GCF_000002985.6_WBcel235_genomic.fna
+GCF_000008685.2_ASM868v2_genomic.fna
+# Edited extraneous text
+# Open the genome information notes for editing.
+[mehdiyev.l@c0689 mehdiyev.l]$ nano Genomes_info 
+# Part 2 — Using EMBOSS infoseq
+# Load the Anaconda Module necessary for the assignment
+(base) [mehdiyev.l@explorer-02 mehdiyev.l]$ module load anaconda3/2024.06
+# Verify loaded modules
+(base) [mehdiyev.l@explorer-02 mehdiyev.l]$ module list
+Currently Loaded Modulefiles:
+ 1) explorer/1.0   2) anaconda3/2024.06 
+# Activate the EMBOSS environment to analyze genome sequences.
+(base) [mehdiyev.l@explorer-02 mehdiyev.l]$ conda activate /courses/BIOL2406.202710/shared/emboss_env
+(/courses/BIOL2406.202710/shared/emboss_env) [mehdiyev.l@explorer-02 mehdiyev.l]$ infoseq
+Display basic information about sequences
+(/courses/BIOL2406.202710/shared/emboss_env) [mehdiyev.l@explorer-02 mehdiyev.l]$ ls
+bioinformatics-portfolio
+class_work
+fishBp.fasta
+GCF_000002985.6_WBcel235_genomic.fna
+GCF_000008685.2_ASM868v2_genomic.fna
+GCF_000840245.1_ViralProj14204_genomic.fna
+# Edited extraneous text
+# Inspect C. elegans genome sequences and GC content
+(/courses/BIOL2406.202710/shared/emboss_env) [mehdiyev.l@explorer-02 mehdiyev.l]$ infoseq GCF_000002985.6_WBcel235_genomic.fna
+Display basic information about sequences
+USA                      Database  Name           Accession      Type Length %GC    Organism            Description 
+GCF_000002985.6_WBcel235_genomic.fna
+fasta::GCF_000002985.6_WBcel235_genomic.fna:NC_003279.8 -              NC_003279.8    -              N    15072434 35.75                      Caenorhabditis elegans chromosome I
+fasta::GCF_000002985.6_WBcel235_genomic.fna:NC_003284.9 -              NC_003284.9    -              N    17718942 35.20                      Caenorhabditis elegans chromosome fasta::GCF_000002985.6_WBcel235_genomic.fna:NC_001328.1 -              NC_001328.1    -              N    13794  23.78                      Caenorhabditis elegans mitochondrion, complete genome          
+# Edited extraneous text
+# Seven sequences are listed (six nuclear chromosomes and mitochondrion); mitochondrial GC is lowest at 23.78%.
+# Inspect the Borreliella chromosome and plasmids.
+(/courses/BIOL2406.202710/shared/emboss_env) [mehdiyev.l@explorer-02 mehdiyev.l]$ infoseq GCF_000008685.2_ASM868v2_genomic.fna
+Display basic information about sequences
+USA                      Database  Name           Accession      Type Length %GC    Organism            Description 
+fasta::GCF_000008685.2_ASM868v2_genomic.fna:NC_001318.1 -              NC_001318.1    -              N    910724 28.60                      Borreliella burgdorferi B31, complete sequence
+fasta::GCF_000008685.2_ASM868v2_genomic.fna:NC_000957.1 -              NC_000957.1    -                   N    28155  32.75                      Borreliella burgdorferi B31 plasmid lp28-1, complete sequence
+fasta::GCF_000008685.2_ASM868v2_genomic.fna:NC_001852.1 -              NC_001852.1    -                          N    38829  26.07                      Borreliella burgdorferi B31 plasmid lp38, complete sequence
+fasta::GCF_000008685.2_ASM868v2_genomic.fna:NC_001857.2 -              NC_001857.2    -              N    53657  28.14                      Borreliella burgdorferi B31 plasmid lp54, complete sequence
+# Edited extraneous text
+# Twenty-two sequences are listed (one chromosome and 21 plasmids); lp28-1 has the highest plasmid GC at 32.75%
+# Inspect the bacteriophage lambda sequence.
+(/courses/BIOL2406.202710/shared/emboss_env) [mehdiyev.l@explorer-02 mehdiyev.l]$ infoseq GCF_000840245.1_ViralProj14204_genomic.fna
+fasta::GCF_000840245.1_ViralProj14204_genomic.fna:NC_001416.1 -              NC_001416.1    -              N    48502  49.86                      Enterobacteria phage lambda, complete genome
+# Edited extraneous text
+# Lambda phage is one 48,502-base sequence with 49.86% GC.
+# Inspect the human GRCh38 genome sequences.
+(/courses/BIOL2406.202710/shared/emboss_env) [mehdiyev.l@explorer-02 mehdiyev.l]$ infoseq Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa
+Display basic information about sequences
+USA                      Database  Name           Accession      Type Length %GC    Organism            Description 
+fasta::Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa:1 -              1              -              N    248956422 42.34                      dna_sm:chromosome chromosome:GRCh38:1:1:248956422:1 REF
+fasta::Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa:X -              X              -              N    156040895 39.60                      dna_sm:chromosome chromosome:GRCh38:X:1:156040895:1 REF
+fasta::Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa:MT -              MT             -              N    16569  44.36                      dna_sm:chromosome chromosome:GRCh38:MT:1:16569:1 REF
+# Edited extraneous text
+# Human reference output included nuclear chromosomes, mitochondrion, and additional scaffolds.
+# Navigate to UNIX_HPC to locate the sea cucumber files.
+(/courses/BIOL2406.202710/shared/emboss_env) [mehdiyev.l@explorer-02 mehdiyev.l]$ cd UNIX_HPC
+(/courses/BIOL2406.202710/shared/emboss_env) [mehdiyev.l@explorer-02 UNIX_HPC]$ ls
+At_genes.gff          chr1.fasta             Sea_cuke
+At_genes_last500.gff  excel_data.csv         smallcase_chr1.fasta
+At_proteins.fasta     intron_IME_data.fasta
+# List the files in the Sea_cuke directory.
+(/courses/BIOL2406.202710/shared/emboss_env) [mehdiyev.l@explorer-02 UNIX_HPC]$ cd Sea_cuke
+(/courses/BIOL2406.202710/shared/emboss_env) [mehdiyev.l@explorer-02 Sea_cuke]$ ls
+backup                  README.txt              SRR6805880.tiny.fastq.gz
+bad-reads-script.sh     scripted_bad_reads.txt  SRR6805881.tiny.fastq
+bad_reads.txt           seq_info.txt            SRR6805881.tiny.fastq.gz
+Ppar_tinygenome.fna.gz  SRR6805880.tiny.fastq
+# Decompress the reference FASTA file.
+(/courses/BIOL2406.202710/shared/emboss_env) [mehdiyev.l@explorer-02 Sea_cuke]$ gunzip -k Ppar_tinygenome.fna.gz
+# Inspect the sea cucumber genome sequence.
+(/courses/BIOL2406.202710/shared/emboss_env) [mehdiyev.l@explorer-02 Sea_cuke]$ infoseq Ppar_tinygenome.fna
+fasta::Ppar_tinygenome.fna:KN893585.1 -              KN893585.1     -              N    22606  39.04                      Parastichopus parvimensis isolate Sea Cucumber 01 unplaced genomic scaffold Scaffold11424, whole genome shotgun sequence
+fasta::Ppar_tinygenome.fna:KN897506.1 -              KN897506.1     -              N    3832   42.93                      Parastichopus parvimensis isolate Sea Cucumber 01 unplaced genomic scaffold Scaffold15978, whole genome shotgun sequence
+fasta::Ppar_tinygenome.fna:JXUT01146130.1 -              JXUT01146130.1 -              N    3328   39.69                      Apostichopus parvimensis isolate Sea Cucumber 01 contig_146132, whole
+genome shotgun sequence
+# Edited extraneous text
+# Sequence information displayed for the selected genome.
+
+# Tutorial Questions and Answers
+# 1: How many sequences are in the worm genome? Answer: 7.
+# 2: How many sequences are in the Borrelia genome? Answer: 22.
+# 3: Which worm sequence has the lowest GC%? Answer: mitochondrion NC_001328.1, 23.78%.
+# 4: Which Borrelia plasmid has the highest GC%? Answer: lp28-1 (NC_000957.1), 32.75%. Plasmid lp28-1 has a higher GC% than the main chromosome.

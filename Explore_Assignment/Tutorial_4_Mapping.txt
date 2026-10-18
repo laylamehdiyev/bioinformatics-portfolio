@@ -1,0 +1,237 @@
+(base) [mehdiyev.l@explorer-02 ~]$ cd /courses/BIOL2406.202710/students/mehdiyev.l/
+# Create the accession-number list for the eight RNA-seq samples.
+(base) [mehdiyev.l@explorer-02 mehdiyev.l]$ nano accessions.txt
+# Create the SRA download batch script.
+(base) [mehdiyev.l@explorer-02 mehdiyev.l]$ nano sra_download.sh
+(base) [mehdiyev.l@explorer-02 mehdiyev.l]$ cat sra_download.sh
+#!/bin/bash
+#SBATCH --time=12:00:00
+
+module load sratoolkit/3.2.0
+
+prefetch SRR1039508 SRR1039512 SRR1039516 SRR1039520
+
+fasterq-dump --split-files SRR1039508 SRR1039512 SRR1039516 SRR1039520 SRR1039509 SRR1039513 SRR1039517 SRR1039521
+
+# Verify the eight accessions in the text file.
+(base) [mehdiyev.l@explorer-02 mehdiyev.l]$ cat accessions.txt
+SRR1039516
+SRR1039517
+SRR1039508
+SRR1039509
+SRR1039512
+SRR1039513
+SRR1039520
+SRR1039521
+
+# Load the FastQC module and its dependencies.
+(base) [mehdiyev.l@explorer-02 mehdiyev.l]$ module load fastqc/0.12.1
+Loading fastqc/0.12.1
+  Loading requirement: OpenJDK/22.0.2 perl/5.40.0
+# Request an interactive compute node to run FastQC.
+(base) [mehdiyev.l@explorer-02 mehdiyev.l]$ srun --pty bash
+srun: job 11171556 queued and waiting for resources
+srun: job 11171556 has been allocated resources 
+# Run FastQC on SRR1039516_1.fastq on the compute node.
+(base) [mehdiyev.l@c0664 mehdiyev.l]$ fastqc fastq_files/SRR1039516_1.fastq -o fastqc_results/
+null
+Started analysis of SRR1039516_1.fastq
+Approx 85% complete for SRR1039516_1.fastq
+Approx 90% complete for SRR1039516_1.fastq
+Approx 95% complete for SRR1039516_1.fastq
+Analysis complete for SRR1039516_1.fastq
+# Edited extraneous text
+# Inspect FastQC summary results for SRR1039516_1.fastq.
+(base) [mehdiyev.l@c0664 mehdiyev.l]$ unzip -p fastqc_results/SRR1039516_1_fastqc.zip '*/summary.txt'
+PASS	Basic Statistics	SRR1039516_1.fastq
+PASS	Per base sequence quality	SRR1039516_1.fastq
+PASS	Per sequence quality scores	SRR1039516_1.fastq
+PASS	Per base sequence content	SRR1039516_1.fastq
+PASS	Per sequence GC content	SRR1039516_1.fastq
+PASS	Per base N content	SRR1039516_1.fastq
+PASS	Sequence Length Distribution	SRR1039516_1.fastq
+FAIL	Sequence Duplication Levels	SRR1039516_1.fastq
+# Inspect FastQC summary results for SRR1039509_1.fastq.
+(base) [mehdiyev.l@c0664 mehdiyev.l]$ unzip -p fastqc_results/SRR1039509_1_fastqc.zip '*/summary.txt'
+PASS	Basic Statistics	SRR1039509_1.fastq
+PASS	Per base sequence quality	SRR1039509_1.fastq
+WARN	Per tile sequence quality	SRR1039509_1.fastq
+PASS	Per sequence quality scores	SRR1039509_1.fastq
+PASS	Per base sequence content	SRR1039509_1.fastq
+PASS	Per sequence GC content	SRR1039509_1.fastq
+# Edited extraneous lines
+# Create the STAR genome-indexing batch script.
+(base) [mehdiyev.l@c0664 mehdiyev.l]$ nano star_index.sh
+# Confirm that the reference genome FASTA and compressed GTF are available.
+(base) [mehdiyev.l@c0664 mehdiyev.l]$ ls -lh Homo_sapiens.GRCh38*
+-rw-r--r-- 1 mehdiyev.l BIOL2406.202710-staff 100M Jul 10  2025 Homo_sapiens.GRCh38.115.gtf.gz
+-rw-r--r-- 1 mehdiyev.l BIOL2406.202710-staff 3.0G Mar 23  2026 Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa
+# Decompress the GTF annotation while keeping the compressed original.
+(base) [mehdiyev.l@c0664 mehdiyev.l]$ gunzip -k Homo_sapiens.GRCh38.115.gtf.gz
+# Edit the STAR indexing script.
+(base) [mehdiyev.l@c0664 mehdiyev.l]$ nano star_index.sh
+# Confirm that the STAR module exists in the shared environment.
+(base) [mehdiyev.l@c0664 mehdiyev.l]$ ls /courses/BIOL2406.202710/shared/
+angsd_env  cutadapt_env  emboss_env  star_env
+(base) [mehdiyev.l@c0664 mehdiyev.l]$ ls /courses/BIOL2406.202710/shared/star_env/bin/STAR
+/courses/BIOL2406.202710/shared/star_env/bin/STAR
+# Edit the STAR indexing script again.
+(base) [mehdiyev.l@c0664 mehdiyev.l]$ nano star_index.sh
+# Inspect the indexing script; the first line contains stray text before the shebang.
+(base) [mehdiyev.l@c0664 mehdiyev.l]$ cat star_index.sh
+--sjdbGTFfile Homo_sapiens.GRCh38.115.gtf \#!/bin/bash
+#SBATCH -J indxJH
+#SBATCH -N 2
+#SBATCH -n 16
+#SBATCH -o output_%j.txt
+#SBATCH -e error_%j.txt
+#SBATCH -t 24:00:00
+
+# Activate the STAR conda environment
+source "$(conda info --base)/etc/profile.d/conda.sh"
+conda activate /courses/BIOL2406.202710/shared/star_env
+
+# Build the STAR genome index
+mkdir -p star_index
+
+STAR --runMode genomeGenerate \
+  --runThreadN 16 \
+  --genomeDir star_index \
+  --genomeFastaFiles Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa \
+  --sjdbGTFfile Homo_sapiens.GRCh38.115.gtf \
+  --sjdbOverhang 99
+# Correct the malformed STAR indexing script header before submission, I edited the failed part out.
+(base) [mehdiyev.l@c0664 mehdiyev.l]$ nano star_index.sh
+(base) [mehdiyev.l@c0664 mehdiyev.l]$ sbatch star_index.sh
+Submitted batch job 11171741
+(base) [mehdiyev.l@c0664 mehdiyev.l]$ squeue -u $USER
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+          11171741     short   indxJH mehdiyev PD       0:00      2 (Priority)
+          11171556     short     bash mehdiyev  R      15:03      1 c0664
+# Check the indexing job after it begins running.
+(base) [mehdiyev.l@c0664 mehdiyev.l]$ squeue -u $USER
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+          11171741     short   indxJH mehdiyev  R       1:24      2 d[0146-0147]
+          11171556     short     bash mehdiyev  R      16:40      1 c0664
+# Inspect progress of the STAR genome-index generation.
+(base) [mehdiyev.l@c0664 mehdiyev.l]$ tail -n 15 output_11171741.txt
+Oct 17 16:53:39 ..... started STAR run
+Oct 17 16:53:39 ... starting to generate Genome files
+Oct 17 16:54:36 ..... processing annotations GTF
+Oct 17 16:55:23 ... starting to sort Suffix Array. This may take a long time...
+Oct 17 16:55:42 ... sorting Suffix Array chunks and saving them to disk...
+# Edited extraneous lines
+# Check the indexing job while it continues running.
+(base) [mehdiyev.l@c0664 mehdiyev.l]$ squeue -u $USER
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+          11171741     short   indxJH mehdiyev  R      15:18      2 d[0146-0147]
+          11171556     short     bash mehdiyev  R      30:34      1 c0664
+# Check the indexing job
+(base) [mehdiyev.l@explorer-02 ~]$ squeue -u $USER
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+# Job finished
+# Return to the student directory.
+(base) [mehdiyev.l@explorer-02 ~]$ cd /courses/BIOL2406.202710/students/mehdiyev.l/
+# Check the completed STAR indexing log for successful completion.
+(base) [mehdiyev.l@explorer-02 mehdiyev.l]$ tail -n 20 output_11171741.txt
+star_1763121846936/work/source
+Oct 17 16:53:39 ..... started STAR run
+Oct 17 16:53:39 ... starting to generate Genome files
+Oct 17 16:54:36 ..... processing annotations GTF
+Oct 17 17:31:44 ... writing SAindex to disk
+Oct 17 17:31:48 ..... finished successfully
+# Edited extraneous lines
+# Create the STAR read-alignment batch script.
+(base) [mehdiyev.l@explorer-02 mehdiyev.l]$ nano star_align.sh
+# Inspect the script used to align paired-end FASTQ reads to the genome.
+(base) [mehdiyev.l@explorer-02 mehdiyev.l]$ cat star_align.sh
+#!/bin/bash
+#SBATCH -J alignJH
+#SBATCH -N 1
+#SBATCH -n 1
+#SBATCH -o output_%j.txt
+#SBATCH -e error_%j.txt
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=80G
+#SBATCH --time=12:00:00
+
+# Activate the STAR conda environment
+source "$(conda info --base)/etc/profile.d/conda.sh"
+conda activate /courses/BIOL2406.202710/shared/star_env
+
+# Directory containing the genome index
+GENOME_DIR="star_index"
+
+# Directory containing the FASTQ files
+FASTQ_DIR="fastq_files"
+
+# Create output directory if it doesn't exist
+mkdir -p aligned_output
+
+# Loop through all paired-end FASTQ samples
+for READ1 in "${FASTQ_DIR}"/SRR*_1.fastq; do
+    SAMPLE=$(basename "$READ1" _1.fastq)
+
+    # Define input files
+    READ2="${FASTQ_DIR}/${SAMPLE}_2.fastq"
+
+    # Align paired-end reads to the human reference genome
+    STAR --runThreadN 16 \
+         --genomeDir "${GENOME_DIR}" \
+         --readFilesIn "$READ1" "$READ2" \
+         --outFileNamePrefix "aligned_output/${SAMPLE}_" \
+         --outSAMtype BAM SortedByCoordinate
+
+done
+# Verify that STAR genome index files were generated.
+(base) [mehdiyev.l@explorer-02 mehdiyev.l]$ ls star_index/
+chrLength.txt      exonGeTrInfo.tab  genomeParameters.txt  sjdbInfo.txt
+chrNameLength.txt  exonInfo.tab      Log.out               sjdbList.fromGTF.out.tab
+chrName.txt        geneInfo.tab      SA                    sjdbList.out.tab
+chrStart.txt       Genome            SAindex               transcriptInfo.tab
+# Submit the STAR alignment batch job.
+(base) [mehdiyev.l@explorer-02 mehdiyev.l]$ sbatch star_align.sh
+Submitted batch job 11178821
+# Check that the STAR alignment job is queued.
+(base) [mehdiyev.l@explorer-02 mehdiyev.l]$ squeue -u mehdiyev.l
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+          11178821     short  alignJH mehdiyev PD       0:00      1 (Priority)
+# Check that the STAR alignment job has started running.
+(base) [mehdiyev.l@explorer-02 mehdiyev.l]$ squeue -u mehdiyev.l
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+          11178821     short  alignJH mehdiyev  R       1:43      1 c0612
+# Confirm that the STAR alignment job has finished and left the queue.
+(base) [mehdiyev.l@explorer-02 mehdiyev.l]$ squeue -u mehdiyev.l
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+# Inspect the STAR alignment log for successful mapping and BAM sorting.
+(base) [mehdiyev.l@explorer-02 mehdiyev.l]$ tail -n 20 output_11178821.txt
+Oct 18 00:46:38 ..... started mapping
+Oct 18 00:48:39 ..... finished mapping
+Oct 18 00:48:41 ..... started sorting BAM
+Oct 18 00:49:25 ..... finished successfully
+Oct 18 00:49:27 ..... started STAR run
+Oct 18 00:52:57 ..... finished mapping
+Oct 18 00:52:58 ..... started sorting BAM
+Oct 18 00:53:28 ..... finished successfully
+# Edited extraneous progress or listing lines, key output retained.
+# Inspect the alignment output directory and confirm generated files.
+(base) [mehdiyev.l@explorer-02 mehdiyev.l]$ ls -lh aligned_output/
+total 19G
+-rw-r--r-- 1 mehdiyev.l BIOL2406.202710-staff 1.9G Oct 18 00:39 SRR1039509_Aligned.sortedByCoord.out.bam
+-rw-r--r-- 1 mehdiyev.l BIOL2406.202710-staff 2.6G Oct 18 00:42 SRR1039512_Aligned.sortedByCoord.out.bam
+-rw-r--r-- 1 mehdiyev.l BIOL2406.202710-staff 1.7G Oct 18 00:43 SRR1039513_Aligned.sortedByCoord.out.bam
+-rw-r--r-- 1 mehdiyev.l BIOL2406.202710-staff 2.7G Oct 18 00:46 SRR1039516_Aligned.sortedByCoord.out.bam
+-rw-r--r-- 1 mehdiyev.l BIOL2406.202710-staff 3.4G Oct 18 00:49 SRR1039517_Aligned.sortedByCoord.out.bam
+# Edited extraneous progress or listing lines; key output retained.
+# List only the eight sorted BAM files to verify that each sample produced a nonempty alignment.
+(base) [mehdiyev.l@explorer-02 mehdiyev.l]$ ls -lh aligned_output/*.bam
+-rw-r--r-- 1 mehdiyev.l BIOL2406.202710-staff 2.1G Oct 18 00:28 aligned_output/SRR1039508_Aligned.sortedByCoord.out.bam
+-rw-r--r-- 1 mehdiyev.l BIOL2406.202710-staff 1.9G Oct 18 00:39 aligned_output/SRR1039509_Aligned.sortedByCoord.out.bam
+-rw-r--r-- 1 mehdiyev.l BIOL2406.202710-staff 2.6G Oct 18 00:42 aligned_output/SRR1039512_Aligned.sortedByCoord.out.bam
+-rw-r--r-- 1 mehdiyev.l BIOL2406.202710-staff 1.7G Oct 18 00:43 aligned_output/SRR1039513_Aligned.sortedByCoord.out.bam
+-rw-r--r-- 1 mehdiyev.l BIOL2406.202710-staff 2.7G Oct 18 00:46 aligned_output/SRR1039516_Aligned.sortedByCoord.out.bam
+-rw-r--r-- 1 mehdiyev.l BIOL2406.202710-staff 3.4G Oct 18 00:49 aligned_output/SRR1039517_Aligned.sortedByCoord.out.bam
+-rw-r--r-- 1 mehdiyev.l BIOL2406.202710-staff 2.2G Oct 18 00:51 aligned_output/SRR1039520_Aligned.sortedByCoord.out.bam
+-rw-r--r-- 1 mehdiyev.l BIOL2406.202710-staff 2.4G Oct 18 00:53 aligned_output/SRR1039521_Aligned.sortedByCoord.out.bam
+# Create a separate FastQC quality-report notes file.
+(base) [mehdiyev.l@explorer-02 mehdiyev.l]$ nano fastqc_notes.txt
