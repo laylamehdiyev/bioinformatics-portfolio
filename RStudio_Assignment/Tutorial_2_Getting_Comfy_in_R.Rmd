@@ -1,0 +1,278 @@
+---
+title: "Tutorial_2_Getting_comfy_in_R.md_RStudio"
+author: "Layla Mehdiyev"
+date: "2026-11-02"
+output: html_document
+---
+```{r}
+# Exercise 1.1 - Question 1
+# Perform a basic arithmetic calculation
+5 * 134
+```
+```{r}
+# Exercise 1.1 - Question 2
+
+# Create a numeric vector called x
+x <- c(2, 9, 3, 8, 3)
+
+# Multiply each value in x by 20
+x * 20
+
+# Perform arithmetic using order of operations
+x + 4 * 24
+
+# Multiply x by 10 and save the result as y
+y <- x * 10
+
+# Calculate the difference between the sums of x and y
+sum(x) - sum(y)
+```
+```{r}
+# Exercise 1.1 - Question 3
+
+# Open the help file for ls()
+?ls
+
+# Open the help file for rm()
+?rm
+
+# The arguments for ls() are name, pos, envir, all.names, pattern, and sorted
+
+# The sorted argument determines whether the results are sorted alphabetically
+# TRUE sorts the results alphabetically, while FALSE does not request sorting
+```
+
+```{r}
+# Exercise 1.2 - Question 1
+
+# Load the iris dataset
+data(iris)
+
+# Find the number of rows in the dataset
+nrow(iris)
+```
+```{r}
+# Exercise 1.2 - Question 2
+
+# 1: Find the number of rows
+nrow(iris)
+
+# 2: Examine the structure of the dataset
+str(iris)
+
+# 3: Display the dimensions of the dataset
+dim(iris)
+```
+```{r}
+# Exercise 1.2 - Question 3
+
+# Display the different species in the iris dataset
+levels(iris$Species)
+
+# Count the number of different species
+length(levels(iris$Species))
+```
+```{r}
+# Exercise 1.2 - Question 4
+
+# Check the class of the iris dataset
+class(iris)
+```
+```{r}
+# Exercise 1.2 - Question 5
+
+# Find the number of columns in the iris dataset
+ncol(iris)
+
+# Display the names of all columns
+colnames(iris)
+```
+```{r}
+# Exercise 1.2 - Question 6
+
+# Examine the structure and data of each column
+str(iris)
+```
+```{r}
+# Exercise 1.2 - Question 7
+
+# Assign the first flower's petal width to a new object
+setosa1.petalwidth <- iris[1,4]
+
+# Assign the first flower's petal length to a new object
+setosa1.petallength <- iris[1,3]
+
+# Display the petal width
+setosa1.petalwidth
+
+# Display the petal length
+setosa1.petallength
+```
+```{r}
+# Exercise 1.2 - Question 8
+
+# Calculate the petal area by multiplying width and length
+setosa1area2 <- setosa1.petalwidth *
+setosa1.petallength
+
+# Display the calculated petal area
+setosa1area2
+```
+```{r}
+# Exercise 1.2 - Question 9
+
+# Calculate the petal area for each flower
+# Save the results in a new column called PetalArea
+iris$PetalArea <- iris$Petal.Length * iris$Petal.Width
+
+# Display the first six rows to see the new column
+head(iris)
+```
+```{r}
+# Exercise 1.2 - Question 10
+
+# Find the maximum sepal length in the iris dataset
+max(iris$Sepal.Length)
+```
+```{r}
+# Exercise 1.2 - Question 11
+
+# Calculate the average sepal length of all flowers
+mean(iris$Sepal.Length)
+```
+```{r}
+# Exercise 1.2 - Question 12
+
+# Find the minimum sepal length
+min(iris$Sepal.Length)
+
+# Calculate the median sepal length
+median(iris$Sepal.Length)
+```
+```{r}
+# Exercise 1.3 - Question 1
+
+# Create a logical vector containing three TRUEs and three FALSEs
+a <- c(TRUE, TRUE, FALSE, FALSE, TRUE, FALSE)
+
+# Display the logical vector
+a
+```
+```{r}
+# Exercise 1.3 - Question 2
+
+# Find where the TRUE values are in my vector
+which(a)
+
+# Another way to find the same positions
+which(a == TRUE)
+```
+```{r}
+# Exercise 1.3 - Question 3
+
+# Find where the FALSE values are
+which(!a)
+
+# Check the positions another way
+which(a == FALSE)
+```
+```{r}
+# Exercise 1.3 - Question 4
+
+# Load the iris data again
+data(iris)
+
+# Count how many flowers have sepals shorter than 5.5 cm
+sum(iris[,'Sepal.Length'] < 5.5)
+
+# Check the number using which()
+length(which(iris[,'Sepal.Length'] < 5.5))
+```
+```{r}
+# Exercise 1.3 - Question 5
+
+# Find the longest petal
+max(iris[,'Petal.Length'])
+
+# Find which flower has that length
+which(iris[,'Petal.Length'] == max(iris[,'Petal.Length']))
+
+# Check the petal width of that flower
+iris[,'Petal.Width'][which(iris[,'Petal.Length'] == max(iris[,'Petal.Length']))]
+```
+```{r}
+# Exercise 1.3 - Question 6
+
+# Count how many flowers are versicolor
+sum(iris[,'Species'] == 'versicolor')
+
+# Check how many flowers belong to each species
+table(iris[,'Species'])
+```
+```{r}
+# Exercise 1.3 - Question 7
+
+# Count the flowers with petals longer than 6 cm
+sum(iris[,'Petal.Length'] > 6)
+```
+```{r}
+# Exercise 1.3 - Question 8
+
+# Find the species of flowers with sepals longer than 6 cm
+iris[,'Species'][iris[,'Sepal.Length'] > 6]
+
+# Another way to get the same species
+iris[iris[,'Sepal.Length'] > 6, 'Species']
+```
+```{r}
+# Exercise 1.3 - Question 9
+
+# Count flowers with sepals shorter than 5 cm and wider than 3 cm
+sum(iris[,'Sepal.Length'] < 5 & iris[,'Sepal.Width'] > 3)
+```
+```{r}
+# Exercise 1.3 - Question 10
+
+# Count flowers with petals narrower than 0.2 cm or shorter than 1.5 cm
+sum(iris[,'Petal.Width'] < 0.2 | iris[,'Petal.Length'] < 1.5)
+```
+```{r}
+# Exercise 1.3 - Question 11
+
+# Find the average sepal width for setosa flowers with sepals longer than 5 cm
+mean(iris$Sepal.Width[iris$Sepal.Length > 5 & iris$Species == "setosa"])
+```
+```{r}
+# Exercise 1.3 - Question 12
+
+# Find the longest petal length for virginica
+max(iris[,'Petal.Length'][iris[,'Species']=='virginica'])
+
+# Find the shortest petal length for virginica
+min(iris[,'Petal.Length'][iris[,'Species']=='virginica'])
+
+# Subtract the shortest length from the longest
+max(iris[,'Petal.Length'][iris[,'Species']=='virginica']) - min(iris[,'Petal.Length'][iris[,'Species']=='virginica'])
+```
+```{r}
+# Exercise 1.3 - Question 13
+
+# Count the flowers with petals wider than 1 cm
+sum(iris[,'Petal.Width'] > 1)
+
+# Divide by the total number of flowers to find the proportion
+sum(iris[,'Petal.Width'] > 1) / nrow(iris)
+```
+```{r}
+# Exercise 1.3 - Question 14
+
+# Make a new column and label all the sepals as long
+iris[,'sepalCategory'] <- 'long'
+
+# Change the label to short for sepals under 5.5 cm
+iris[,'sepalCategory'][iris[,'Sepal.Length'] < 5.5] <- 'short'
+
+# Count how many flowers are in each category
+table(iris[,'sepalCategory'])
+```
+
