@@ -1,0 +1,107 @@
+# Exercise 1: Practicing Base R Plotting
+# Name: Layla Mehdiyev
+# Date: 11/5/26
+
+# Load required libraries
+```{r}
+library(ggplot2)
+```
+
+# Load the msleep dataset
+```{r}
+data(msleep)
+```
+# ============================================================================
+# Task 1: Create and customize a scatterplot
+# ============================================================================
+# Create a scatterplot of sleep_total vs bodywt (body weight).
+# Customize your plot with:
+# - A point character (pch) of your choice
+# - Blue colored points
+# - Axis labels: "Body Weight (kg)" for x-axis and "Total Sleep (hours)" for y-axis
+# - A border style of your choice (bty)
+
+# Your code here:
+```{r}
+# Create a scatterplot of total sleep versus body weight
+plot(msleep$sleep_total ~ msleep$bodywt,
+     pch = 16,
+     col = "blue",
+     xlab = "Body Weight (kg)",
+     ylab = "Total Sleep (hours)",
+     bty = "L")
+```
+
+
+
+# ============================================================================
+# Task 2: Make a histogram
+# ============================================================================
+# Create a histogram of the brainwt (brain weight) variable.
+# Customize your histogram with:
+# - A color of your choice (col)
+# - An appropriate x-axis label
+# - A descriptive title using the main argument
+
+# Your code here:
+```{r}
+# Create a boxplot comparing total sleep across different diet types
+boxplot(msleep$sleep_total ~ as.factor(msleep$vore),
+        col = rainbow(4),
+        xlab = "Diet Type",
+        ylab = "Total Sleep (hours)",
+        main = "Total Sleep by Diet Type")
+```
+
+
+
+# ============================================================================
+# Task 3: Create a boxplot comparing groups
+# ============================================================================
+# Create a boxplot showing sleep_total for each vore type (diet).
+# Customize your boxplot with:
+# - Different colors for each box (hint: use rainbow() or choose specific colors)
+# - Appropriate axis labels
+# - Convert vore to a factor using as.factor()
+
+# Your code here:
+```{r}
+# Create a boxplot comparing total sleep across different diet types
+boxplot(msleep$sleep_total ~ as.factor(msleep$vore),
+        col = rainbow(4),
+        xlab = "Diet Type",
+        ylab = "Total Sleep (hours)",
+        main = "Total Sleep by Diet Type")
+```
+
+
+
+# ============================================================================
+# Bonus Challenge (Optional)
+# ============================================================================
+# Create a scatterplot of any two continuous variables from msleep.
+# Add a line of best fit using abline() and lm().
+# Color points based on a condition you define (like we did with sleep_total >= 17
+# in the tutorial), and add a legend to explain the colors.
+
+# Your code here:
+```{r}
+# Color points based on whether total sleep is at least 17 hours
+msleep$colors <- ifelse(msleep$sleep_total >= 17, "red", "black")
+
+# Create a scatterplot of total sleep versus body weight
+plot(msleep$sleep_total ~ msleep$bodywt,
+     pch = 16,
+     col = msleep$colors,
+     xlab = "Body Weight (kg)",
+     ylab = "Total Sleep (hours)")
+
+# Add a line of best fit using a linear model
+abline(lm(msleep$sleep_total ~ msleep$bodywt))
+
+# Add a legend explaining the colors
+legend("topright",
+       legend = c("17+ hours", "Less than 17 hours"),
+       col = c("red", "black"),
+       pch = 16)
+```

@@ -1,0 +1,132 @@
+# Exercise 2: Practicing ggplot2
+
+
+# Load required libraries
+```{r}
+library(ggplot2)
+```
+
+# Load the msleep dataset
+```{r}
+data(msleep)
+```
+
+# ============================================================================
+# Question 1: Basic scatterplot with the msleep dataset
+# ============================================================================
+# Create a scatterplot showing the relationship between bodywt (body weight) 
+# and brainwt (brain weight). Add appropriate axis labels and change the 
+# theme to theme_classic().
+
+# Your code here:
+```{r}
+# Create a scatterplot with axis labels and a classic theme
+ggplot(msleep, aes(x=bodywt, y=brainwt))+
+  geom_point()+
+  labs(x="Body Weight (kg)", y="Brain Weight (kg)")+
+  theme_classic()
+```
+
+
+# ============================================================================
+# Question 2: Adding color by group
+# ============================================================================
+# Using the same variables from question 1 (bodywt and brainwt), color the 
+# points by vore (diet type). Make sure to convert vore to a factor.
+# Add a legend title that says "Diet Type".
+
+# Your code here:
+```{r}
+# Plot body weight versus brain weight, coloring points by diet type
+ggplot(msleep, aes(x=bodywt, y=brainwt, color=as.factor(vore)))+
+  geom_point()+
+  labs(x="Body Weight (kg)",
+       y="Brain Weight (kg)",
+       color="Diet Type")+
+  theme_classic()
+```
+
+
+# ============================================================================
+# Question 3: Scatterplot with a line of best fit
+# ============================================================================
+# Plot sleep_total against sleep_cycle. Add a linear regression line using 
+# geom_smooth(). Color the line red and use theme_minimal().
+
+# Your code here:
+```{r}
+# Plot total sleep against sleep cycle with a red regression line
+ggplot(msleep, aes(x=sleep_cycle, y=sleep_total))+
+  geom_point()+
+  geom_smooth(method="lm", color="red")+
+  labs(x="Sleep Cycle (hours)",
+       y="Total Sleep (hours)")+
+  theme_minimal()
+```
+
+
+# ============================================================================
+# Question 4: Faceted plots by group
+# ============================================================================
+# Create a scatterplot of sleep_total vs sleep_rem. Use facet_wrap() to 
+# create separate panels for each vore type. Add appropriate axis labels.
+
+# Your code here:
+```{r}
+# Plot total sleep versus REM sleep with separate panels for each diet type
+ggplot(msleep, aes(x=sleep_rem, y=sleep_total))+
+  geom_point()+
+  facet_wrap(~vore)+
+  labs(x="REM Sleep (hours)",
+       y="Total Sleep (hours)")
+```
+
+
+# ============================================================================
+# Question 5: Exploring a new dataset
+# ============================================================================
+# Load the built-in iris dataset. Create a scatterplot showing Petal.Length 
+# vs Petal.Width. Color points by Species. Add a title to your plot using 
+# ggtitle("Iris Petal Dimensions"). Choose your favorite theme.
+
+# Load the iris dataset
+```{r}
+data(iris)
+```
+
+# Your code here:
+```{r}
+# Load the iris dataset
+data(iris)
+
+# Create a scatterplot of petal length versus petal width
+ggplot(iris, aes(x=Petal.Width, y=Petal.Length, color=Species))+
+  geom_point()+
+  labs(x="Petal Width (cm)",
+       y="Petal Length (cm)")+
+  ggtitle("Iris Petal Dimensions")+
+  theme_classic()
+```
+
+
+# ============================================================================
+# Bonus Challenge (Optional)
+# ============================================================================
+# Pick any two continuous variables from the msleep dataset and create a 
+# publication-quality plot with:
+# - Appropriate axis labels
+# - A theme of your choice
+# - Points colored by a grouping variable
+# - A descriptive title
+
+# Your code here:
+```{r}
+# Create a scatterplot of total sleep versus REM sleep, colored by diet type
+ggplot(msleep, aes(x=sleep_rem, y=sleep_total, color=as.factor(vore)))+
+  geom_point(size=3)+
+  labs(x="REM Sleep (hours)",
+       y="Total Sleep (hours)",
+       color="Diet Type",
+       title="Relationship Between REM Sleep and Total Sleep by Diet Type")+
+  theme_classic()
+```

@@ -1,0 +1,176 @@
+---
+title: "Tutorial_3_R_Plotting.md"
+author: "Layla Mehdiyev"
+date: "2026-11-04"
+output: html_document
+---
+```{r}
+# Load the ggplot2 package
+library(ggplot2)
+
+# Load the msleep dataset
+data(msleep)
+```
+```{r}
+# Create a scatterplot of total sleep versus bodyweight
+plot(msleep$sleep_total, msleep$bodywt)
+```
+
+```{r}
+# Create a scatterplot with total sleep on the y-axis and bodyweight on the x-axis
+plot(msleep$sleep_total ~ msleep$bodywt)
+```
+```{r}
+# Add labels to the x-axis and y-axis
+plot(msleep$sleep_total ~ msleep$bodywt,
+     pch = 16,
+     col = "blue",
+     bty = "L",
+     xlab = "Bodyweight (grams)",
+     ylab = "Total Sleep (hours)")
+# Add a line of best fit using a linear model
+abline(lm(msleep$sleep_total ~ msleep$bodywt))
+```
+```{r}
+# Create an empty column named colors in the msleep dataframe
+msleep$colors = NA
+
+# Assign red to animals that sleep 17 hours or more
+msleep$colors[msleep$sleep_total >= 17] <- "red"
+
+# Assign black to animals that sleep less than 17 hours
+msleep$colors[msleep$sleep_total < 17] <- "black"
+```
+
+```{r}
+# Create a scatterplot with points colored by total sleep duration
+plot(msleep$sleep_total ~ msleep$bodywt,
+     pch = 16,
+     col = msleep$colors,
+     bty = "L",
+     xlab = "Bodyweight (grams)",
+     ylab = "Total Sleep (hours)")
+```
+```{r}
+# Create a histogram of total sleep and use 10 rainbow colors
+hist(msleep$sleep_total, col = rainbow(10))
+```
+```{r}
+# Create a boxplot of total sleep across different animal orders
+plot(msleep$sleep_total ~ as.factor(msleep$order), col = rainbow(19))
+```
+```{r}
+# Create a boxplot of total sleep across different animal orders
+boxplot(msleep$sleep_total ~ as.factor(msleep$order), col = rainbow(19))
+```
+```{r}
+# Create a plot comparing total sleep across different types of consumers
+plot(msleep$sleep_total ~ as.factor(msleep$vore),
+     col = rainbow(4),
+     xlab = "Bodyweight (grams)",
+     ylab = "Total Sleep (hours)")
+```
+```{r}
+# Load the states dataset
+data(state)
+
+# Convert the dataset into a dataframe
+states = as.data.frame(state.x77)
+
+# Examine the dataframe
+str(states)
+
+# Create an initial ggplot
+ggplot(data=states)
+```
+```{r}
+# Set the x and y variables using aes()
+ggplot(data=states, aes(x=Population, y=Income)) +
+
+# Add points to create the scatterplot
+  geom_point()
+```
+
+```{r}
+# Create a scatterplot of population versus income
+ggplot(data=states, aes(x=Population, y=Income)) +
+
+# Add blue points and adjust their size
+  geom_point(color="blue", size=3)
+```
+
+```{r}
+# Create a scatterplot and add a linear regression line
+ggplot(data=states, aes(x=Population, y=Income))+geom_point()+geom_smooth(method="lm")
+```
+
+```{r}
+# Create the scatterplot with a line of best fit and a minimal theme
+ggplot(data=states, aes(x=Population, y=Income))+geom_point()+geom_smooth(method="lm")+theme_minimal()
+```
+```{r}
+# Plot income against illiteracy, with points colored by population
+ggplot(data=states, aes(x=Income, y=Illiteracy, color=Population)) +geom_point()+geom_smooth(method="lm", color="red")+theme_classic()
+```
+```{r}
+# Convert vore to a factor to group and color animals by diet
+ggplot(msleep, aes(y=sleep_total, x=sleep_rem, group=as.factor(vore), color=as.factor(vore))) +geom_point()
+```
+# Customize the sleep scatterplot with axis labels, a minimal theme, and diet colors
+
+```{r}
+# Add labels, change the theme, and customize the diet legend
+ggplot(msleep, aes(y=sleep_total, x=sleep_rem, group=as.factor(vore), color=as.factor(vore)))+
+  geom_point()+
+  labs(y= "Total Sleep (hours)", x= "REM sleep (hours)")+
+  theme_minimal()+
+  scale_color_manual(name="Diet",
+                     labels = c("Carnivore",
+                                "Herbivore",
+                                "Insectivore",
+                                "Omnivore",
+                                "NA"),
+                     values = c("carni"="blue",
+                                "herbi"="red",
+                                "insecti"="green",
+                                "omni"="brown",
+                                "NA"="orange"))
+```
+# Assign the sleep scatterplot to an object called g
+
+```{r}
+# Assign the plot to an object
+g<-ggplot(msleep, aes(y=sleep_total, x=sleep_rem, group=as.factor(vore), color=as.factor(vore)))+
+  geom_point()+
+  labs(y= "Total Sleep (hours)", x= "REM sleep (hours)")+
+  theme_minimal()+
+  scale_color_manual(name="Diet",
+                     labels = c("Carnivore",
+                                "Herbivore",
+                                "Insectivore",
+                                "Omnivore",
+                                "NA"),
+                     values = c("carni"="blue",
+                                "herbi"="red",
+                                "insecti"="green",
+                                "omni"="brown",
+                                "NA"="orange"))
+g
+```
+```{r}
+# Create a scatterplot grouped and colored by species
+ggplot(iris, aes(y=Sepal.Length, x=Sepal.Width, group=Species, color=Species))+
+  geom_point()+
+  facet_wrap(~Species)+
+  geom_smooth(method="lm")
+```
+```{r}
+# Create a plot of chick weight over time grouped by diet
+ggplot(ChickWeight, aes(x=Time, y=weight, group=Diet, color=Diet))+
+  stat_summary(fun=mean, geom="point", size=1)+
+  stat_summary(fun=mean, geom="line", size=1)+
+  stat_summary(fun.data = mean_se, geom = "errorbar",
+               aes(width=0.1), size=0.5)
+```
+
+
