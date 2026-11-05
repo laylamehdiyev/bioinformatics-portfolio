@@ -27,12 +27,12 @@ The sections below give the absolute path, purpose, and editing notes for each s
 - /courses/BIOL2406.202710/students/mehdiyev.l/bioinformatics-portfolio/RStudio_Assignment/Tutorial_4_Nailing_It.Rmd - Saved R Markdown commands and exercises for RStudio Tutorial 4, including loops and apply functions.
 
 ## Programs and Versions
-Local Mac: GNU bash 3.2.57(1)-release (arm64-apple-darwin21)
-Explorer: GNU bash 5.1.8(1)-release (x86_64-redhat-linux-gnu)
-R: Version 4.5.2 (2025-10-31)
-RStudio: Version 2025.9.2.418
-R Markdown: Version 2.30
-Swirl: Version 2.4.5
+- Local Mac: GNU bash 3.2.57(1)-release (arm64-apple-darwin21)
+- Explorer: GNU bash 5.1.8(1)-release (x86_64-redhat-linux-gnu)
+- R: Version 4.5.2 (2025-10-31)
+- RStudio: Version 2025.9.2.418
+- R Markdown: Version 2.30
+- Swirl: Version 2.4.5
 
 ## Editing Notes
 - For Swirl, I saved my completed R programming lessons and exported the progress logs into a ZIP file.
