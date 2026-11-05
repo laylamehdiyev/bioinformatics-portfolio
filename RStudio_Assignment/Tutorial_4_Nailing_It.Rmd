@@ -2,7 +2,7 @@
 # Name: Layla Mehdiyev
 # Date: 11/5/26
 
-# Tutorial 4: For Loops and the Apply Family of Functions
+# Tutorial 4: Nailing It
 
 # Use a for-loop to calculate the squares of numbers 1 through 10
 
