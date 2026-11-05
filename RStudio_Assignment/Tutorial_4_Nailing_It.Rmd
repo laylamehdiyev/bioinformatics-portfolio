@@ -1,0 +1,224 @@
+# Exercise 3: tapply and sapply
+# Name: Layla Mehdiyev
+# Date: 11/5/26
+
+# Tutorial 4: For Loops and the Apply Family of Functions
+
+# Use a for-loop to calculate the squares of numbers 1 through 10
+
+```{r}
+# Create a vector to store the results
+squares = rep(NA, 10)
+
+# Calculate the squares using a for-loop
+for (i in 1:10) {
+  squares[i] = i^2
+}
+
+# Display the results
+squares
+```
+# Use sapply to square numbers from 1 to 10
+
+```{r}
+# Apply a function to each number
+sapply(1:10, function(x) x^2)
+```
+# Calculate the area of circles using sapply
+
+```{r}
+# Create a function to calculate the area of a circle
+areaCircle = function(r) {
+  return(pi*r^2)
+}
+
+# Calculate circle areas for radii 1 through 10
+sapply(1:10, areaCircle)
+
+# Calculate the same areas without using sapply
+pi*(1:10)^2
+```
+# Use sapply to examine elements in a list
+
+```{r}
+# Create a list containing different types of data
+listy = list(a=TRUE, b=c("a","b","c"), c=10:100)
+
+# Examine the structure of the list
+str(listy)
+
+# Find the number of elements in the list
+length(listy)
+
+# Find the length of each element using sapply
+sapply(listy, FUN=length)
+```
+# Use sapply to plot multiple data frames
+
+```{r}
+# Create four data frames
+df1 = data.frame(x=1:10, y=(1:10)^2)
+df2 = data.frame(x=1:10, y=(1:10)^3)
+df3 = data.frame(x=1:10, y=sqrt(1:10))
+df4 = data.frame(x=1:10, y=log(1:10))
+
+# Combine the data frames into a list
+my_list = list(df1, df2, df3, df4)
+
+# Arrange plots in a 2 by 2 layout
+par(mfrow=c(2,2))
+
+# Plot each data frame
+sapply(my_list, plot)
+```
+# Use apply to calculate the mean of each variable
+
+```{r}
+# Load the state dataset
+data(state)
+
+# Convert the data into a dataframe
+states = as.data.frame(state.x77)
+
+# Examine the structure of the dataframe
+str(states)
+
+# Calculate the mean of each column
+apply(states, 2, mean)
+```
+```{r}
+# Load the ggplot2 package
+library(ggplot2)
+
+# Create scatterplots comparing population to each variable
+apply(states, 2, FUN=function(i)
+  ggplot(states, aes(x=Population, y=i)) +
+    geom_point() +
+    geom_smooth(method="lm") +
+    theme_classic()
+)
+```
+# Use apply to calculate the sum of each row
+
+```{r}
+# Calculate the sum of the values for each state
+apply(states, 1, sum)
+```
+# Compare lapply() and sapply()
+
+```{r}
+# Use lapply to square numbers from 1 to 10
+lapply(1:10, function(x) x^2)
+
+# Use sapply without simplifying the output
+sapply(1:10, function(x) x^2, simplify=FALSE)
+
+# Use sapply with its default simplified output
+sapply(1:10, function(x) x^2)
+```
+# Use tapply to calculate averages by region
+
+```{r}
+# Calculate the average number of freezing days in each region
+tapply(states$Frost, state.region, mean)
+
+# Calculate regional averages for every variable
+apply(states, 2, function(x) tapply(x, state.region, mean))
+```
+
+# Load state data
+
+```{r}
+data(state)
+```
+
+# this data is stored in a slightly different way than other datasets we've used so far
+# run this line of code to avoid later confusion
+
+```{r}
+states = as.data.frame(state.x77) 
+```
+
+# 1: What is the average population, income, and area of all 50 states ins the `states` dataset?
+# Your code here:
+```{r}
+# Calculate the average population, income, and area of all 50 states
+sapply(states[, c("Population", "Income", "Area")], mean)
+```
+
+# 2. What is the average area of the states from different regions of the country?
+# Hint: use the object state.region in your environment 
+# Your code here:
+```{r}
+# Calculate the average area of states in each region
+tapply(states$Area, state.region, mean)
+```
+# 3. Plot a histogram for each column in the states data (Population, Income, Illiteracy etc.)
+# Your code here:
+```{r}
+# Plot a histogram for each column in the states dataset
+par(mfrow=c(2,4))
+
+# Create histograms for all 8 variables
+apply(states, 2, hist)
+```
+# 4. Let's assume that we don't want to live in a state with high illiteracy, high murder, and 
+# many freezing days; also assume that each of these factors contribute equally to our opinion 
+# (Illiteracy * Murder * Frost) = undesirable
+#  What 10 states should we avoid? # hint use prod(); and maybe order()
+# Your code here:
+```{r}
+# Calculate the undesirability score for each state
+undesirable = apply(states[, c("Illiteracy", "Murder", "Frost")], 1, prod)
+
+# Sort the scores from highest to lowest
+undesirable_sorted = sort(undesirable, decreasing=TRUE)
+
+# Display the 10 states with the highest scores
+head(undesirable_sorted, 10)
+```
+  
+# 5. Use sapply() to plot a histogram of the data below 4 times, in 4 different colors. 
+#  For extra style, title the plot by it's color, e.g. the red plot is titled "red"
+# Your code here:
+```{r}
+# Create four different colors for the histograms
+colors = c("red", "blue", "green", "purple")
+
+# Arrange the histograms in a 2 by 2 layout
+par(mfrow=c(2,2))
+
+# Plot four histograms using sapply
+sapply(colors, function(x) {
+  hist(states$Population, col=x, main=x)
+})
+```
+
+# 6. Standardize all the variables in the states dataset and save your answer to a new 
+# dataframe, states_standardized
+# Hint: to standardize a variable, you subtract the mean and divide by the standard deviation (sd)
+# Your code here:
+```{r}
+# Standardize the values by subtracting the average and dividing by the standard deviation
+states_standardized = as.data.frame(sapply(states, function(x) {
+  (x - mean(x)) / sd(x)
+}))
+
+# Take a look at the first few rows
+head(states_standardized)
+```
+
+# 7. Create a histogram again for each variable in the states data, but this time label each 
+# histogram with the variable names when you plot
+# Hint: instead of using apply to iterate over the columns themselves, you can often iterate 
+# over the column names with sapply
+
+# Your code here:
+```{r}
+# Make a histogram for each variable and label it with its name
+par(mfrow=c(2,4))
+
+sapply(names(states), function(x) {
+  hist(states[[x]], main=x, xlab=x)
+})
+```
